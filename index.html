@@ -1,1446 +1,1440 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISMO APP - Plan de Emergencia & Red Familiar Chile</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- QR Code Styling Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SISMO APP – Red Familiar Chile</title>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        chileRed: '#d52b1e',
-                        chileBlue: '#002b7f',
-                        senapredNavy: '#0f172a',
-                    }
-                }
-            }
-        }
-    </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- QR Code Styling Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
-    <style>
-        /* ESTILOS DE IMPRESIÓN PROFESIONAL PARA TRÍPTICO A4 HORIZONTAL */
-        @media print {
-            .no-print { display: none !important; }
-            body { 
-                background: white !important; 
-                color: #0f172a !important; 
-                font-size: 8.5pt !important; 
-                padding: 0 !important; 
-                margin: 0 !important; 
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
-            #section-brochure { display: block !important; }
-            #section-protection, #section-tools, #section-drill, #section-qr { display: none !important; }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            chileRed: '#d52b1e',
+            chileBlue: '#002b7f',
+            senapredNavy: '#0f172a',
+          }
+        }
+      }
+    };
+  </script>
 
-            .print-page { 
-                display: flex !important; 
-                flex-direction: row !important; 
-                page-break-after: always; 
-                page-break-inside: avoid;
-                height: 100vh !important;
-                max-height: 100vh !important;
-                padding: 6mm !important;
-                box-sizing: border-box !important;
-                gap: 8mm !important;
-                background: white !important;
-            }
-            .print-col {
-                flex: 1 !important;
-                width: 31% !important;
-                border: 1px solid #cbd5e1 !important;
-                border-radius: 8px !important;
-                padding: 8px !important;
-                box-shadow: none !important;
-                overflow: hidden !important;
-                background: #ffffff !important;
-            }
-            @page {
-                size: landscape A4;
-                margin: 0;
-            }
-        }
+  <style>
+    /* ESTILOS DE IMPRESIÓN PROFESIONAL PARA TRÍPTICO A4 HORIZONTAL */
+    @media print {
+      .no-print { display: none !important; }
+      body { 
+        background: white !important; 
+        color: #0f172a !important; 
+        font-size: 8.5pt !important; 
+        padding: 0 !important; 
+        margin: 0 !important; 
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      #section-brochure { display: block !important; }
+      #section-protection, #section-tools, #section-drill, #section-qr { display: none !important; }
 
-        .fold-line { border-right: 2px dashed #94a3b8; }
-        .strobe-active { animation: strobe 0.2s infinite alternate; }
-        @keyframes strobe {
-            0% { background-color: #d52b1e; color: #ffffff; }
-            100% { background-color: #ffffff; color: #d52b1e; }
-        }
-        .pulse-emergency {
-            animation: pulse-red 1.5s infinite;
-        }
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(213, 43, 30, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(213, 43, 30, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(213, 43, 30, 0); }
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #020617;
-            border-radius: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #334155;
-        }
-    </style>
+      .print-page { 
+        display: flex !important; 
+        flex-direction: row !important; 
+        page-break-after: always; 
+        page-break-inside: avoid;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        padding: 6mm !important;
+        box-sizing: border-box !important;
+        gap: 8mm !important;
+        background: white !important;
+      }
+      .print-col {
+        flex: 1 !important;
+        width: 31% !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+        padding: 8px !important;
+        box-shadow: none !important;
+        overflow: hidden !important;
+        background: #ffffff !important;
+      }
+      @page {
+        size: landscape A4;
+        margin: 0;
+      }
+    }
+
+    .fold-line { border-right: 2px dashed #94a3b8; }
+    .strobe-active { animation: strobe 0.2s infinite alternate; }
+    @keyframes strobe {
+      0% { background-color: #d52b1e; color: #ffffff; }
+      100% { background-color: #ffffff; color: #d52b1e; }
+    }
+    .pulse-emergency {
+      animation: pulse-red 1.5s infinite;
+    }
+    @keyframes pulse-red {
+      0% { box-shadow: 0 0 0 0 rgba(213, 43, 30, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(213, 43, 30, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(213, 43, 30, 0); }
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #020617;
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+
+  <!-- ============================================ -->
+  <!-- CONFIGURACIÓN FIREBASE (RELLENAR ANTES DE SUBIR) -->
+  <!-- ============================================ -->
+  <script>
+    // EJEMPLO (rellenar con tus datos reales de Firebase):
+    // window.__firebase_config = JSON.stringify({
+    //   apiKey: "AIza...",
+    //   authDomain: "tu-proyecto.firebaseapp.com",
+    //   projectId: "tu-proyecto",
+    //   storageBucket: "tu-proyecto.appspot.com",
+    //   messagingSenderId: "123456789",
+    //   appId: "1:123456789:web:abcdef"
+    // });
+    // window.__app_id = 'sismo-app-hogar';
+    // window.__initial_auth_token = '...'; // opcional
+  </script>
+  <!-- ============================================ -->
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen antialiased flex flex-col selection:bg-red-600 selection:text-white">
 
-    <header class="no-print bg-slate-900/95 backdrop-blur border-b border-slate-800 sticky top-0 z-50 shadow-xl">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-                <div class="bg-chileRed text-white p-2 rounded-xl font-extrabold text-base flex items-center justify-center w-10 h-10 shadow-lg shadow-red-950/50 border border-red-500/30">
-                    <i class="fa-solid fa-house-chimney-crack text-lg"></i>
-                </div>
-                <div>
-                    <h1 class="font-extrabold text-sm sm:text-base leading-tight flex items-center gap-2 text-white">
-                        <span>SISMO APP</span> 
-                        <span class="bg-chileBlue text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase border border-blue-400/30">CHILE</span>
-                    </h1>
-                    <p class="text-[10px] text-slate-400">Plan de Emergencia & Red Familiar en Tiempo Real</p>
-                </div>
-            </div>
-
-            <!-- Navegación por Pestañas Principal -->
-            <nav class="flex items-center bg-slate-950/80 p-1 rounded-xl border border-slate-800 text-xs font-semibold overflow-x-auto max-w-full">
-                <button id="nav-protection" onclick="switchSection('protection')" class="px-3 py-1.5 rounded-lg bg-chileRed text-white transition flex items-center gap-1.5 shrink-0 shadow">
-                    <i class="fa-solid fa-shield-halved"></i> <span>Protección Familiar</span>
-                </button>
-                <button id="nav-tools" onclick="switchSection('tools')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> <span>Panel SOS</span>
-                </button>
-                <button id="nav-drill" onclick="switchSection('drill')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-                    <i class="fa-solid fa-stopwatch text-emerald-400"></i> <span>Simulacro</span>
-                </button>
-                <button id="nav-qr" onclick="switchSection('qr')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-                    <i class="fa-solid fa-qrcode text-sky-400"></i> <span>Código QR</span>
-                </button>
-                <button id="nav-brochure" onclick="switchSection('brochure')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-                    <i class="fa-solid fa-file-pdf text-red-400"></i> <span>Tríptico Oficial</span>
-                </button>
-            </nav>
-
-            <div class="flex items-center gap-2">
-                <button onclick="window.print()" class="bg-chileRed hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs transition flex items-center gap-1.5 shadow-lg shadow-red-950/40">
-                    <i class="fa-solid fa-print"></i> <span class="hidden md:inline">Imprimir Tríptico A4</span>
-                </button>
-            </div>
+  <header class="no-print bg-slate-900/95 backdrop-blur border-b border-slate-800 sticky top-0 z-50 shadow-xl">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="bg-chileRed text-white p-2 rounded-xl font-extrabold text-base flex items-center justify-center w-10 h-10 shadow-lg shadow-red-950/50 border border-red-500/30">
+          <i class="fa-solid fa-house-chimney-crack text-lg"></i>
         </div>
-    </header>
+        <div>
+          <h1 class="font-extrabold text-sm sm:text-base leading-tight flex items-center gap-2 text-white">
+            <span>SISMO APP</span> 
+            <span class="bg-chileBlue text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase border border-blue-400/30">CHILE</span>
+          </h1>
+          <p class="text-[10px] text-slate-400">Plan de Emergencia & Red Familiar en Tiempo Real</p>
+        </div>
+      </div>
 
-    <div id="toast" class="no-print fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-slate-100 border border-slate-700 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-xs max-w-sm">
-        <i id="toast-icon" class="fa-solid fa-circle-info text-blue-400 text-base"></i>
-        <span id="toast-message">Notificación del sistema.</span>
+      <!-- Navegación por Pestañas -->
+      <nav class="flex items-center bg-slate-950/80 p-1 rounded-xl border border-slate-800 text-xs font-semibold overflow-x-auto max-w-full">
+        <button id="nav-protection" onclick="switchSection('protection')" class="px-3 py-1.5 rounded-lg bg-chileRed text-white transition flex items-center gap-1.5 shrink-0 shadow">
+          <i class="fa-solid fa-shield-halved"></i> <span>Protección Familiar</span>
+        </button>
+        <button id="nav-tools" onclick="switchSection('tools')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+          <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> <span>Panel SOS</span>
+        </button>
+        <button id="nav-drill" onclick="switchSection('drill')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+          <i class="fa-solid fa-stopwatch text-emerald-400"></i> <span>Simulacro</span>
+        </button>
+        <button id="nav-qr" onclick="switchSection('qr')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+          <i class="fa-solid fa-qrcode text-sky-400"></i> <span>Código QR</span>
+        </button>
+        <button id="nav-brochure" onclick="switchSection('brochure')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+          <i class="fa-solid fa-file-pdf text-red-400"></i> <span>Tríptico Oficial</span>
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button onclick="window.print()" class="bg-chileRed hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs transition flex items-center gap-1.5 shadow-lg shadow-red-950/40">
+          <i class="fa-solid fa-print"></i> <span class="hidden md:inline">Imprimir Tríptico A4</span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 space-y-6 no-print">
+  <div id="toast" class="no-print fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-slate-100 border border-slate-700 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-xs max-w-sm">
+    <i id="toast-icon" class="fa-solid fa-circle-info text-blue-400 text-base"></i>
+    <span id="toast-message">Notificación del sistema.</span>
+  </div>
 
-        <!-- SECCIÓN 1: PROTECCIÓN FAMILIAR & RED EN TIEMPO REAL -->
-        <section id="section-protection" class="space-y-5">
-            
-            <!-- Banner de Alerta Offline / Inestabilidad -->
-            <div id="net-banner" class="hidden p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-center justify-between gap-3">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-wifi-slash text-amber-400 text-base"></i>
-                    <span><strong>Modo Red Inestable / Offline:</strong> Las redes de datos celulares pueden colapsar durante un terremoto. Usa la opción <strong>"SMS Directo"</strong> o WhatsApp.</span>
-                </div>
+  <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 space-y-6 no-print">
+
+    <!-- SECCIÓN 1: PROTECCIÓN FAMILIAR & RED EN TIEMPO REAL -->
+    <section id="section-protection" class="space-y-5">
+      
+      <!-- Banner Offline -->
+      <div id="net-banner" class="hidden p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-wifi-slash text-amber-400 text-base"></i>
+          <span><strong>Modo Red Inestable / Offline:</strong> Las redes de datos pueden colapsar. Usa <strong>"SMS Directo"</strong> o WhatsApp.</span>
+        </div>
+      </div>
+
+      <!-- Card Superior: Configuración e Indicadores -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+              <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-400">Sincronización Familiar Activa</span>
             </div>
+            <h2 class="text-xl font-extrabold text-white mt-1">Mi Estado en Caso de Sismo</h2>
+            <p class="text-xs text-slate-400">Transmite tu situación a la red familiar vía Firebase o SMS.</p>
+          </div>
 
-            <!-- Card Superior: Configuración e Indicadores del Integrante -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-                            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-400">Sincronización Familiar Activa</span>
-                        </div>
-                        <h2 class="text-xl font-extrabold text-white mt-1">Mi Estado en Caso de Sismo</h2>
-                        <p class="text-xs text-slate-400">Transmite tu situación exacta a la red familiar vía Firebase o SMS.</p>
-                    </div>
-
-                    <!-- Código de Grupo Familiar -->
-                    <div class="flex items-center gap-2 bg-slate-950 p-2 rounded-xl border border-slate-800">
-                        <i class="fa-solid fa-users text-chileBlue text-sm pl-2"></i>
-                        <div class="flex flex-col">
-                            <label for="input-group-code" class="text-[9px] uppercase text-slate-500 font-bold">Código de Grupo Familiar:</label>
-                            <input type="text" id="input-group-code" value="FAMILIA-PEREZ" onchange="handleGroupCodeChange()" 
-                                class="bg-transparent text-amber-400 font-mono text-xs font-bold focus:outline-none uppercase w-36 border-b border-dashed border-slate-700 focus:border-amber-400">
-                        </div>
-                        <button onclick="copyGroupCode()" title="Copiar Código de Grupo" class="p-2 text-slate-400 hover:text-white transition">
-                            <i class="fa-solid fa-copy text-xs"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
-                    <div>
-                        <label for="input-user-name" class="block text-xs font-medium text-slate-300 mb-1">Tu Nombre / Identificador:</label>
-                        <input type="text" id="input-user-name" placeholder="Ej: Mamá / Diego" value="Tu Dispositivo (Tú)" 
-                            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:ring-2 focus:ring-red-500 focus:outline-none">
-                    </div>
-
-                    <div>
-                        <label for="input-user-note" class="block text-xs font-medium text-slate-300 mb-1">Mensaje de Situación Actual:</label>
-                        <input type="text" id="input-user-note" placeholder="Ej: En la zona de seguridad con los niños" 
-                            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:ring-2 focus:ring-red-500 focus:outline-none">
-                    </div>
-
-                    <div class="flex items-center justify-between pt-2 md:pt-4">
-                        <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
-                            <input type="checkbox" id="chk-attach-gps" checked class="rounded bg-slate-950 border-slate-700 text-chileRed focus:ring-red-500 h-4 w-4">
-                            <span>Adjuntar Posición GPS</span>
-                        </label>
-                        <span id="battery-indicator" class="text-[11px] font-mono text-slate-400 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1.5">
-                            <i class="fa-solid fa-battery-three-quarters text-amber-400"></i> <span id="battery-level-text">100%</span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Botones Gigantes de Acción (Botones de Pánico) -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                    <button id="btn-status-safe" onclick="setUserStatus('safe')" class="p-4 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 active:scale-95 text-white font-bold transition shadow-lg shadow-emerald-950/40 flex flex-col items-center justify-center gap-1.5 border border-emerald-400/30">
-                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <span class="text-base tracking-wide">¡Estoy a Salvo!</span>
-                        <span class="text-[10px] text-emerald-100/80 font-normal">Sin lesiones ni peligro de colapso</span>
-                    </button>
-
-                    <button id="btn-status-evac" onclick="setUserStatus('evac')" class="p-4 rounded-2xl bg-gradient-to-br from-amber-600 to-orange-700 hover:from-amber-500 hover:to-orange-600 active:scale-95 text-white font-bold transition shadow-lg shadow-amber-950/40 flex flex-col items-center justify-center gap-1.5 border border-amber-400/30">
-                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-person-walking-arrow-right"></i>
-                        </div>
-                        <span class="text-base tracking-wide">En Evacuación</span>
-                        <span class="text-[10px] text-amber-100/80 font-normal">Hacia Zona de Seguridad / Cota 30m</span>
-                    </button>
-
-                    <button id="btn-status-help" onclick="setUserStatus('help')" class="p-4 rounded-2xl bg-gradient-to-br from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 active:scale-95 text-white font-bold transition shadow-lg shadow-red-950/50 pulse-emergency flex flex-col items-center justify-center gap-1.5 border border-red-400/40">
-                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                        </div>
-                        <span class="text-base tracking-wide">¡NECESITO AYUDA!</span>
-                        <span class="text-[10px] text-red-100/80 font-normal">Lesión / Atrapamiento / Rescate</span>
-                    </button>
-                </div>
-
-                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <div class="flex items-center justify-between border-b border-slate-900 pb-2">
-                        <span class="text-xs text-slate-300 font-bold flex items-center gap-2">
-                            <i class="fa-solid fa-share-nodes text-chileRed"></i>
-                            Difusión Rápida Multicanal
-                        </span>
-                        <span class="text-[10px] bg-red-950 text-red-300 font-mono px-2 py-0.5 rounded border border-red-800">Sismo Alert</span>
-                    </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                        <button onclick="shareWhatsApp()" class="px-3 py-2.5 bg-emerald-700/80 hover:bg-emerald-600 text-white font-bold rounded-xl border border-emerald-500/50 transition flex items-center justify-center gap-2 shadow-md">
-                            <i class="fa-brands fa-whatsapp text-lg text-emerald-300"></i>
-                            <span>WhatsApp</span>
-                        </button>
-
-                        <button onclick="shareTelegram()" class="px-3 py-2.5 bg-sky-700/80 hover:bg-sky-600 text-white font-bold rounded-xl border border-sky-500/50 transition flex items-center justify-center gap-2 shadow-md">
-                            <i class="fa-brands fa-telegram text-lg text-sky-300"></i>
-                            <span>Telegram</span>
-                        </button>
-
-                        <button onclick="shareSMS()" class="px-3 py-2.5 bg-amber-700/80 hover:bg-amber-600 text-white font-bold rounded-xl border border-amber-500/50 transition flex items-center justify-center gap-2 shadow-md">
-                            <i class="fa-solid fa-comment-sms text-lg text-amber-300"></i>
-                            <span>SMS Directo</span>
-                        </button>
-
-                        <button onclick="copyReportText()" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl border border-slate-600 transition flex items-center justify-center gap-2 shadow-md">
-                            <i class="fa-solid fa-copy text-lg text-slate-300"></i>
-                            <span>Copiar Texto</span>
-                        </button>
-                    </div>
-                </div>
-
+          <!-- Código de Grupo Familiar -->
+          <div class="flex items-center gap-2 bg-slate-950 p-2 rounded-xl border border-slate-800">
+            <i class="fa-solid fa-users text-chileBlue text-sm pl-2"></i>
+            <div class="flex flex-col">
+              <label for="input-group-code" class="text-[9px] uppercase text-slate-500 font-bold">Código de Grupo Familiar:</label>
+              <input type="text" id="input-group-code" value="FAMILIA-PEREZ" onchange="handleGroupCodeChange()" 
+                  class="bg-transparent text-amber-400 font-mono text-xs font-bold focus:outline-none uppercase w-36 border-b border-dashed border-slate-700 focus:border-amber-400">
             </div>
+            <button onclick="copyGroupCode()" title="Copiar Código de Grupo" class="p-2 text-slate-400 hover:text-white transition">
+              <i class="fa-solid fa-copy text-xs"></i>
+            </button>
+          </div>
+        </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-users-viewfinder text-chileRed"></i>
-                            Red Familiar Activa: <span id="display-group-name" class="text-amber-400 font-mono">FAMILIA-PEREZ</span>
-                        </h3>
-                        <p class="text-xs text-slate-400">Monitoreo en tiempo real vía Firebase Firestore (Soporta hasta 30 personas).</p>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
+          <div>
+            <label for="input-user-name" class="block text-xs font-medium text-slate-300 mb-1">Tu Nombre / Identificador:</label>
+            <input type="text" id="input-user-name" placeholder="Ej: Mamá / Diego" value="Tu Dispositivo (Tú)" 
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:ring-2 focus:ring-red-500 focus:outline-none">
+          </div>
 
-                    <!-- Métricas de Integrantes -->
-                    <div class="flex flex-wrap items-center gap-2 text-xs">
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-medium">
-                            <strong id="stat-total-members" class="text-white">0</strong>/30 Integrantes
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-emerald-950/80 border border-emerald-800/80 text-emerald-300 font-medium flex items-center gap-1.5">
-                            <i class="fa-solid fa-circle-check text-emerald-400"></i> <strong id="stat-safe-count" class="text-emerald-200">0</strong> A Salvo
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-amber-950/80 border border-amber-800/80 text-amber-300 font-medium flex items-center gap-1.5">
-                            <i class="fa-solid fa-person-walking text-amber-400"></i> <strong id="stat-evac-count" class="text-amber-200">0</strong> Evacuando
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-red-950/80 border border-red-800/80 text-red-300 font-medium flex items-center gap-1.5">
-                            <i class="fa-solid fa-bell text-red-400 animate-bounce"></i> <strong id="stat-help-count" class="text-red-200">0</strong> Ayuda
-                        </span>
-                    </div>
-                </div>
+          <div>
+            <label for="input-user-note" class="block text-xs font-medium text-slate-300 mb-1">Mensaje de Situación Actual:</label>
+            <input type="text" id="input-user-note" placeholder="Ej: En la zona de seguridad con los niños" 
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:ring-2 focus:ring-red-500 focus:outline-none">
+          </div>
 
-                <!-- Grilla Dinámica de Integrantes -->
-                <div id="family-members-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-96 overflow-y-auto custom-scrollbar pr-1 pt-2">
-                    <!-- Insertado por JavaScript -->
-                </div>
+          <div class="flex items-center justify-between pt-2 md:pt-4">
+            <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+              <input type="checkbox" id="chk-attach-gps" checked class="rounded bg-slate-950 border-slate-700 text-chileRed focus:ring-red-500 h-4 w-4">
+              <span>Adjuntar Posición GPS</span>
+            </label>
+            <span id="battery-indicator" class="text-[11px] font-mono text-slate-400 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-battery-three-quarters text-amber-400"></i> <span id="battery-level-text">100%</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+          <button id="btn-status-safe" onclick="setUserStatus('safe')" class="p-4 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 active:scale-95 text-white font-bold transition shadow-lg shadow-emerald-950/40 flex flex-col items-center justify-center gap-1.5 border border-emerald-400/30">
+            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-circle-check"></i>
             </div>
+            <span class="text-base tracking-wide">¡Estoy a Salvo!</span>
+            <span class="text-[10px] text-emerald-100/80 font-normal">Sin lesiones ni peligro de colapso</span>
+          </button>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                
-                <!-- Formulario Registro del Hogar -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                        <h3 class="font-bold text-base flex items-center gap-2 text-slate-100">
-                            <i class="fa-solid fa-house-user text-amber-400"></i> Registro del Hogar & Ficha Familiar
-                        </h3>
-                        <span class="text-xs text-slate-400">Sincronización Automática</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                        <div>
-                            <label class="block text-slate-400 mb-1 font-semibold">🏠 Dirección del Hogar:</label>
-                            <input type="text" id="app-input-address" oninput="syncInputs('address')" placeholder="Ej: Av. Brasil 456" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-slate-400 mb-1 font-semibold">📍 Comuna / Ciudad:</label>
-                            <input type="text" id="app-input-commune" oninput="syncInputs('commune')" placeholder="Ej: Rancagua" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-slate-400 mb-1 font-semibold">🔲 Punto de Encuentro Familiar:</label>
-                            <input type="text" id="app-input-meeting" oninput="syncInputs('meeting')" placeholder="Ej: Plaza Central / Cancha" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-slate-400 mb-1 font-semibold">🛡️ Zona de Seguridad Exterior:</label>
-                            <input type="text" id="app-input-safezone" oninput="syncInputs('safezone')" placeholder="Ej: Zona Cota 30m / Parque" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-slate-400 mb-1 font-semibold">📞 Contacto Extracomunal:</label>
-                            <input type="text" id="app-input-contact" oninput="syncInputs('contact')" placeholder="Ej: Tío Carlos" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-slate-400 mb-1 font-semibold">📱 Teléfono del Contacto:</label>
-                            <input type="tel" id="app-input-phone" oninput="syncInputs('phone')" placeholder="Ej: +56 9 1234 5678" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kit Mochila 72 Horas Checklist -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                        <h3 class="font-bold text-base flex items-center gap-2 text-slate-100">
-                            <i class="fa-solid fa-suitcase-rolling text-amber-400"></i> Kit de Emergencia 72 Horas
-                        </h3>
-                        <span id="app-kit-counter" class="text-xs font-bold text-amber-400 bg-amber-950/80 px-2.5 py-1 rounded-full border border-amber-800/50">0 / 9 Listos</span>
-                    </div>
-
-                    <div class="w-full bg-slate-950 rounded-full h-2.5 border border-slate-800 overflow-hidden">
-                        <div id="app-kit-bar" class="bg-amber-500 h-full transition-all duration-300" style="width: 0%"></div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>💧 Agua embotellada (2L/persona/día)</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>🥫 Alimentos no perecibles & abrelatas</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>🔦 Linterna & pilas de repuesto</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>📻 Radio portátil AM/FM</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>🩹 Botiquín & medicamentos habituales</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>🔑 Copia de llaves de hogar y auto</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>📋 Cédulas de identidad & dinero en efectivo</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>🐾 Comida, agua y correa de mascota</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700 sm:col-span-2">
-                            <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
-                            <span>🛠️ Silbato, navaja, guantes, mascarillas & batería portátil</span>
-                        </label>
-                    </div>
-                </div>
-
+          <button id="btn-status-evac" onclick="setUserStatus('evac')" class="p-4 rounded-2xl bg-gradient-to-br from-amber-600 to-orange-700 hover:from-amber-500 hover:to-orange-600 active:scale-95 text-white font-bold transition shadow-lg shadow-amber-950/40 flex flex-col items-center justify-center gap-1.5 border border-amber-400/30">
+            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-person-walking-arrow-right"></i>
             </div>
+            <span class="text-base tracking-wide">En Evacuación</span>
+            <span class="text-[10px] text-amber-100/80 font-normal">Hacia Zona de Seguridad / Cota 30m</span>
+          </button>
 
-        </section>
-
-        <section id="section-tools" class="hidden space-y-5 max-w-4xl mx-auto">
-            
-            <div id="strobe-container" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white text-center space-y-4 shadow-2xl transition-all">
-                <div class="w-16 h-16 bg-red-600/20 text-red-500 border border-red-500/30 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-lg">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <h2 class="text-2xl font-black">Luz de Auxilio Visual / Estrobo</h2>
-                <p class="text-xs text-slate-400 max-w-md mx-auto">Destello estroboscópico de alta potencia para ubicación en penumbra o bajo escombros.</p>
-
-                <div class="pt-2">
-                    <button id="btn-strobe" onclick="toggleStrobe()" class="bg-red-600 hover:bg-red-500 text-white font-extrabold px-6 py-3 rounded-xl text-sm transition shadow-lg shadow-red-950/50">
-                        <i class="fa-solid fa-bolt mr-2"></i> Activar Luz Estroboscópica
-                    </button>
-                </div>
+          <button id="btn-status-help" onclick="setUserStatus('help')" class="p-4 rounded-2xl bg-gradient-to-br from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 active:scale-95 text-white font-bold transition shadow-lg shadow-red-950/50 pulse-emergency flex flex-col items-center justify-center gap-1.5 border border-red-400/40">
+            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
+            <span class="text-base tracking-wide">¡NECESITO AYUDA!</span>
+            <span class="text-[10px] text-red-100/80 font-normal">Lesión / Atrapamiento / Rescate</span>
+          </button>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <span class="text-xs font-bold text-red-400 uppercase tracking-wider"><i class="fa-solid fa-bullhorn mr-1"></i> Auxilio Sonoro</span>
-                        <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded border border-red-800/50">Web Audio API</span>
-                    </div>
-                    <h3 class="font-bold text-base text-slate-100">Sirena & Silbato de Pánico SOS</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Frecuencia oscilante de alta densidad para guiar a grupos de rescate.</p>
+        <!-- Difusión Rápida -->
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-900 pb-2">
+            <span class="text-xs text-slate-300 font-bold flex items-center gap-2">
+              <i class="fa-solid fa-share-nodes text-chileRed"></i>
+              Difusión Rápida Multicanal
+            </span>
+            <span class="text-[10px] bg-red-950 text-red-300 font-mono px-2 py-0.5 rounded border border-red-800">Sismo Alert</span>
+          </div>
 
-                    <div class="grid grid-cols-2 gap-2 pt-2">
-                        <button id="btn-siren" onclick="toggleSiren()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-red-950/40">
-                            <i class="fa-solid fa-volume-high"></i> <span id="lbl-siren">Activar Sirena</span>
-                        </button>
-                        <button id="btn-whistle" onclick="toggleWhistle()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-amber-950/40">
-                            <i class="fa-solid fa-bullhorn"></i> <span id="lbl-whistle">Silbato SOS</span>
-                        </button>
-                    </div>
-                </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <button onclick="shareWhatsApp()" class="px-3 py-2.5 bg-emerald-700/80 hover:bg-emerald-600 text-white font-bold rounded-xl border border-emerald-500/50 transition flex items-center justify-center gap-2 shadow-md">
+              <i class="fa-brands fa-whatsapp text-lg text-emerald-300"></i>
+              <span>WhatsApp</span>
+            </button>
+            <button onclick="shareTelegram()" class="px-3 py-2.5 bg-sky-700/80 hover:bg-sky-600 text-white font-bold rounded-xl border border-sky-500/50 transition flex items-center justify-center gap-2 shadow-md">
+              <i class="fa-brands fa-telegram text-lg text-sky-300"></i>
+              <span>Telegram</span>
+            </button>
+            <button onclick="shareSMS()" class="px-3 py-2.5 bg-amber-700/80 hover:bg-amber-600 text-white font-bold rounded-xl border border-amber-500/50 transition flex items-center justify-center gap-2 shadow-md">
+              <i class="fa-solid fa-comment-sms text-lg text-amber-300"></i>
+              <span>SMS Directo</span>
+            </button>
+            <button onclick="copyReportText()" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl border border-slate-600 transition flex items-center justify-center gap-2 shadow-md">
+              <i class="fa-solid fa-copy text-lg text-slate-300"></i>
+              <span>Copiar Texto</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider"><i class="fa-solid fa-headset mr-1"></i> Asistente de Voz</span>
-                        <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800/50">Speech Synthesis</span>
-                    </div>
-                    <h3 class="font-bold text-base text-slate-100">Guía Hablada de Pasos</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Instrucciones audibles de autoprotección en caso de falla de luz o pánico.</p>
+      <!-- Red Familiar -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-users-viewfinder text-chileRed"></i>
+              Red Familiar Activa: <span id="display-group-name" class="text-amber-400 font-mono">FAMILIA-PEREZ</span>
+            </h3>
+            <p class="text-xs text-slate-400">Monitoreo en tiempo real vía Firebase Firestore (Soporta hasta 30 personas).</p>
+          </div>
 
-                    <div class="pt-2">
-                        <button id="btn-tts" onclick="speakEmergencySteps()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40">
-                            <i class="fa-solid fa-volume-low"></i> <span id="lbl-tts">Escuchar Guía de Voz</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+          <!-- Métricas -->
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-medium">
+              <strong id="stat-total-members" class="text-white">0</strong>/30 Integrantes
+            </span>
+            <span class="px-3 py-1.5 rounded-xl bg-emerald-950/80 border border-emerald-800/80 text-emerald-300 font-medium flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-400"></i> <strong id="stat-safe-count" class="text-emerald-200">0</strong> A Salvo
+            </span>
+            <span class="px-3 py-1.5 rounded-xl bg-amber-950/80 border border-amber-800/80 text-amber-300 font-medium flex items-center gap-1.5">
+              <i class="fa-solid fa-person-walking text-amber-400"></i> <strong id="stat-evac-count" class="text-amber-200">0</strong> Evacuando
+            </span>
+            <span class="px-3 py-1.5 rounded-xl bg-red-950/80 border border-red-800/80 text-red-300 font-medium flex items-center gap-1.5">
+              <i class="fa-solid fa-bell text-red-400 animate-bounce"></i> <strong id="stat-help-count" class="text-red-200">0</strong> Ayuda
+            </span>
+          </div>
+        </div>
 
-            <!-- Directorio Telefónico de Emergencia Chile -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
-                <h3 class="font-bold text-base text-slate-100 flex items-center gap-2">
-                    <i class="fa-solid fa-phone text-chileRed"></i> Números Directos de Emergencia (Chile)
-                </h3>
-                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                    <a href="tel:131" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
-                        <span class="block text-[10px] text-slate-400 font-bold uppercase">SAMU</span>
-                        <span class="text-lg font-black text-red-400">131</span>
-                    </a>
-                    <a href="tel:132" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
-                        <span class="block text-[10px] text-slate-400 font-bold uppercase">Bomberos</span>
-                        <span class="text-lg font-black text-amber-400">132</span>
-                    </a>
-                    <a href="tel:133" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
-                        <span class="block text-[10px] text-slate-400 font-bold uppercase">Carabineros</span>
-                        <span class="text-lg font-black text-emerald-400">133</span>
-                    </a>
-                    <a href="tel:134" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
-                        <span class="block text-[10px] text-slate-400 font-bold uppercase">PDI</span>
-                        <span class="text-lg font-black text-sky-400">134</span>
-                    </a>
-                    <a href="tel:1405" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow col-span-2 sm:col-span-1">
-                        <span class="block text-[10px] text-slate-400 font-bold uppercase">SENAPRED</span>
-                        <span class="text-lg font-black text-blue-400">1405</span>
-                    </a>
-                </div>
-            </div>
+        <!-- Grilla de Integrantes -->
+        <div id="family-members-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-96 overflow-y-auto custom-scrollbar pr-1 pt-2">
+          <!-- Insertado por JavaScript -->
+        </div>
+      </div>
 
-        </section>
-
-        <section id="section-drill" class="hidden space-y-5 max-w-2xl mx-auto">
-            
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white text-center space-y-4 shadow-2xl">
-                <div class="inline-block bg-emerald-950 text-emerald-400 border border-emerald-800/50 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                    Ensayo de Autoprotección
-                </div>
-
-                <h2 class="text-2xl font-black">Simulacro de Sismo Familiar</h2>
-                <p class="text-xs text-slate-400">Temporizador interactivo con voz para practicar la reacción de 60 segundos.</p>
-
-                <div class="py-6 my-2 bg-slate-950 rounded-2xl border border-slate-800 shadow-inner">
-                    <span id="drill-timer" class="text-6xl font-black font-mono text-amber-400">00:60</span>
-                    <p id="drill-instruction" class="text-sm font-bold text-slate-300 mt-3">Presiona "Iniciar Simulacro" para comenzar</p>
-                </div>
-
-                <div class="flex items-center justify-center gap-3">
-                    <button id="btn-start-drill" onclick="startDrill()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-950/40">
-                        <i class="fa-solid fa-play mr-1.5"></i> Iniciar Simulacro
-                    </button>
-                    <button onclick="resetDrill()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-3 rounded-xl text-xs transition">
-                        Reiniciar
-                    </button>
-                </div>
-            </div>
-
-        </section>
-
-        <section id="section-qr" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-6 xl:col-span-7 space-y-6">
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
-                    <h2 class="text-base font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-qrcode text-sky-400"></i> Generador de Código QR
-                    </h2>
-
-                    <div class="space-y-3">
-                        <label for="qr-url-input" class="block text-xs font-medium text-slate-300">URL o Enlace Web de Destino:</label>
-                        <div class="relative flex items-center">
-                            <input type="text" id="qr-url-input" value="https://monarde82.github.io/SISMO-APP-HOGAR/" oninput="updateQR()" 
-                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 font-mono focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 pt-2">
-                        <div>
-                            <label for="qr-dots-color" class="block text-xs font-medium text-slate-300 mb-1">Color QR:</label>
-                            <input type="color" id="qr-dots-color" value="#0f172a" onchange="updateQR()" class="w-full h-9 rounded-xl cursor-pointer bg-slate-950 border border-slate-800 p-1">
-                        </div>
-                        <div>
-                            <label for="qr-bg-color" class="block text-xs font-medium text-slate-300 mb-1">Color Fondo:</label>
-                            <input type="color" id="qr-bg-color" value="#ffffff" onchange="updateQR()" class="w-full h-9 rounded-xl cursor-pointer bg-slate-950 border border-slate-800 p-1">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-6 xl:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center space-y-6 flex flex-col justify-between">
-                <div>
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950 text-slate-400 text-xs font-medium border border-slate-800 mb-4">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Vista Previa QR
-                    </span>
-                    <h3 class="text-lg font-bold text-white">Escanea con tu Celular</h3>
-                </div>
-
-                <div class="relative p-6 bg-white rounded-2xl shadow-2xl border-4 border-slate-800 flex items-center justify-center my-2 mx-auto">
-                    <div id="qr-code-target"></div>
-                </div>
-
-                <div class="space-y-2">
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="downloadQR('png')" class="px-3 py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-xl shadow transition">
-                            <i class="fa-solid fa-file-image"></i> Descargar PNG
-                        </button>
-                        <button onclick="downloadQR('svg')" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-700 transition">
-                            <i class="fa-solid fa-file-code"></i> Descargar SVG
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 5: VISTA TRÍPTICO SENAPRED OFICIAL -->
-        <section id="section-brochure" class="hidden space-y-6">
-
-            <!-- Selector de Caras (Solo para visualización en pantalla) -->
-            <div class="no-print flex items-center justify-center gap-2 bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-800 max-w-md mx-auto">
-                <button id="tab-exterior" onclick="switchBrochureSide('exterior')" class="flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition bg-chileBlue text-white shadow">
-                    Cara Externa (Portada & Registro)
-                </button>
-                <button id="tab-interior" onclick="switchBrochureSide('interior')" class="flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition text-slate-400 hover:text-white">
-                    Cara Interna (Antes, Durante, Después)
-                </button>
-            </div>
-
-            <!-- CARA EXTERNA (PÁGINA 1 DE IMPRESIÓN: P0 Solapa, P6 Contraportada, P1 Portada) -->
-            <div id="side-exterior" class="print-page grid grid-cols-1 md:grid-cols-3 gap-6 bg-white text-slate-900 p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-200">
-                
-                <!-- COLUMNA 1 (SOLAPA INTERNA - PÁGINA 0: INFORMACIÓN ÚTIL Y REGISTRO HOGAR) -->
-                <div class="print-col fold-line pr-0 md:pr-4 flex flex-col justify-between space-y-2 bg-slate-50/80 p-3 rounded-xl border border-slate-200">
-                    <div>
-                        <div class="bg-slate-900 text-white p-2 rounded-xl flex items-center justify-between mb-2">
-                            <span class="font-black text-[9px] uppercase tracking-wider bg-slate-800 px-2 py-0.5 rounded">Página 0</span>
-                            <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-house-user text-amber-400"></i> INFORMACIÓN ÚTIL</span>
-                        </div>
-                        <h2 class="text-sm font-black text-slate-900 border-b-2 border-amber-400 pb-1 mb-2 uppercase">REGISTRO DEL HOGAR / COMUNIDAD</h2>
-
-                        <div class="space-y-2 text-[11px]">
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-0.5">🏠 DIRECCIÓN DEL HOGAR:</label>
-                                <input type="text" id="input-address" placeholder="Ingresar dirección" oninput="syncInputs('address')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-0.5">📍 COMUNA:</label>
-                                <input type="text" id="input-commune" placeholder="Ingresar comuna" oninput="syncInputs('commune')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-0.5">🔲 PUNTO DE ENCUENTRO FAMILIAR:</label>
-                                <input type="text" id="input-meeting" placeholder="Definir punto" oninput="syncInputs('meeting')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-0.5">🛡️ ZONA DE SEGURIDAD EXTERIOR:</label>
-                                <input type="text" id="input-safezone" placeholder="Definir zona" oninput="syncInputs('safezone')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-0.5">📞 CONTACTO FUERA DE LA ZONA:</label>
-                                <input type="text" id="input-contact" placeholder="Nombre de contacto" oninput="syncInputs('contact')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-0.5">📱 TELÉFONO DE CONTACTO:</label>
-                                <input type="tel" id="input-phone" placeholder="Número de contacto" oninput="syncInputs('phone')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-2 text-[10px] text-amber-900 space-y-1">
-                        <div class="font-bold flex items-center gap-1 text-amber-700">
-                            <i class="fa-solid fa-shield-cat"></i> Información Oficial: SENAPRED
-                        </div>
-                        <p class="leading-tight">
-                            En emergencia: Mantén la calma, evita saturar líneas telefónicas y prioriza los mensajes de texto.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- COLUMNA 2 (CONTRAPORTADA - PÁGINA 6: TELÉFONOS Y KIT DE EMERGENCIA) -->
-                <div class="print-col fold-line pr-0 md:pr-4 flex flex-col justify-between space-y-2 p-3">
-                    <div>
-                        <div class="bg-chileRed text-white p-2 rounded-xl flex items-center justify-between mb-2">
-                            <span class="font-black text-[9px] uppercase tracking-wider bg-red-950/60 px-2 py-0.5 rounded">Contraportada</span>
-                            <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-phone-volume"></i> EMERGENCIA & KIT</span>
-                        </div>
-
-                        <h2 class="text-sm font-black text-slate-900 border-b-2 border-chileRed pb-1 mb-2 uppercase">TELÉFONOS DE EMERGENCIA</h2>
-
-                        <div class="grid grid-cols-2 gap-1.5 mb-3">
-                            <div class="bg-blue-50 border border-blue-200 p-1.5 rounded-lg text-center">
-                                <span class="block text-[9px] font-bold text-blue-900">SAMU AMBULANCIA</span>
-                                <a href="tel:131" class="text-base font-black text-chileBlue">131</a>
-                            </div>
-                            <div class="bg-red-50 border border-red-200 p-1.5 rounded-lg text-center">
-                                <span class="block text-[9px] font-bold text-red-900">BOMBEROS</span>
-                                <a href="tel:132" class="text-base font-black text-chileRed">132</a>
-                            </div>
-                            <div class="bg-blue-50 border border-blue-200 p-1.5 rounded-lg text-center">
-                                <span class="block text-[9px] font-bold text-blue-900">CARABINEROS</span>
-                                <a href="tel:133" class="text-base font-black text-chileBlue">133</a>
-                            </div>
-                            <div class="bg-slate-100 border border-slate-300 p-1.5 rounded-lg text-center">
-                                <span class="block text-[9px] font-bold text-slate-800">PDI</span>
-                                <a href="tel:134" class="text-base font-black text-slate-900">134</a>
-                            </div>
-                        </div>
-
-                        <h2 class="text-sm font-black text-slate-900 border-b-2 border-amber-500 pb-1 mb-1.5 uppercase">KIT DE EMERGENCIA 72H</h2>
-                        <p class="text-[10px] text-slate-600 mb-1 font-semibold">Prepara un kit accessible y conocido por todos:</p>
-
-                        <ul class="text-[10px] space-y-1 text-slate-800 leading-tight">
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-bottle-water text-blue-600 mt-0.5"></i> <span><strong>Agua y alimentos:</strong> No perecibles y embotellada.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-lightbulb text-amber-500 mt-0.5"></i> <span><strong>Iluminación:</strong> Linterna y baterías de repuesto.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-radio text-emerald-600 mt-0.5"></i> <span><strong>Información:</strong> Radio a pilas o alternativa.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-kit-medical text-red-600 mt-0.5"></i> <span><strong>Salud:</strong> Botiquín y medicamentos habituales.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-key text-slate-600 mt-0.5"></i> <span><strong>Seguridad:</strong> Documentos y copia de llaves.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-shield text-slate-700 mt-0.5"></i> <span><strong>Protección:</strong> Silbato, guantes y mascarillas.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-battery-full text-green-600 mt-0.5"></i> <span><strong>Comunicación:</strong> Cargador portátil celular.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-users text-indigo-600 mt-0.5"></i> <span><strong>Específicos:</strong> Bebés, adultos mayores, mascotas.</span></li>
-                            <li class="flex items-start gap-1"><i class="fa-solid fa-money-bill-wave text-emerald-700 mt-0.5"></i> <span><strong>Dinero en Efectivo</strong></span></li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-red-50 border border-red-200 rounded-lg p-1.5 text-[9.5pt] text-red-900 font-bold leading-tight">
-                        ⚠️ Precaución: No uses velas, fósforos ni encendedores si existe posibilidad de fuga de gas.
-                    </div>
-                </div>
-
-                <!-- COLUMNA 3 (PORTADA - PÁGINA 1: TÍTULO Y MANTRAS DE SEGURIDAD) -->
-                <div class="print-col flex flex-col justify-between text-center bg-gradient-to-b from-slate-950 via-chileBlue to-slate-900 text-white p-5 rounded-xl relative overflow-hidden">
-                    <div>
-                        <div class="inline-block bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-blue-200 mb-3 border border-white/15 uppercase">
-                            PLAN DE PROTECCIÓN FAMILIAR
-                        </div>
-
-                        <div class="w-16 h-16 bg-white text-chileBlue rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-xl mb-3 border-2 border-red-500">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-
-                        <h1 class="text-xl font-black tracking-tight uppercase leading-tight mb-1 text-white">
-                            PLAN DE EMERGENCIA
-                        </h1>
-                        <h2 class="text-base font-extrabold text-amber-400 uppercase tracking-wide border-b border-white/20 pb-2 mb-3">
-                            SISMO EN EL HOGAR
-                        </h2>
-                        <p class="text-xs font-semibold text-slate-200 italic">Antes, durante y después del sismo</p>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3 my-2 text-left space-y-1.5">
-                        <div class="text-amber-300 font-black text-xs uppercase text-center border-b border-white/10 pb-1 mb-1">
-                            ¡MANTRA DE SEGURIDAD!
-                        </div>
-                        <ul class="text-xs space-y-1.5 font-bold text-slate-100">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Protégete.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Mantén la calma.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Actúa con organización.</li>
-                        </ul>
-                    </div>
-
-                    <div class="space-y-1 pt-2 border-t border-white/15 text-[10px] text-slate-300">
-                        <p class="italic leading-tight">
-                            "La preparación reduce lesiones y facilita la ayuda oportuna ante emergencias."
-                        </p>
-                        <p class="font-bold text-amber-300 uppercase tracking-wide">
-                            "La seguridad es tarea de todos"
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- CARA INTERNA (PÁGINAS 2, 3, 4/5: ANTES, DURANTE, DESPUÉS & EVACUACIÓN VERTICAL) -->
-            <div id="side-interior" class="print-page hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 bg-white text-slate-900 p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-200">
-
-                <!-- COLUMNA 1 (PÁGINA 2: ANTES - Prepara tu hogar) -->
-                <div class="print-col fold-line pr-0 md:pr-4 space-y-2 p-3">
-                    <div class="bg-emerald-700 text-white p-2 rounded-xl flex items-center justify-between mb-2">
-                        <span class="font-black text-[9px] uppercase tracking-wider bg-emerald-900/60 px-2 py-0.5 rounded">Página 2</span>
-                        <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-clipboard-check"></i> ANTES DEL SISMO</span>
-                    </div>
-
-                    <h2 class="text-sm font-black text-emerald-900 border-b-2 border-emerald-600 pb-1 mb-2 uppercase">PREPARA TU HOGAR</h2>
-
-                    <div class="space-y-1.5 text-[10.5pt] text-slate-800 leading-tight">
-                        <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
-                            <strong class="text-emerald-900 block font-bold mb-0.5">• Verificación de estructura:</strong>
-                            Revisa el material de la vivienda. Si es de adobe o autoconstrucción no existen zonas seguras internas; planifica evacuación inmediata.
-                        </div>
-
-                        <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
-                            <strong class="text-emerald-900 block font-bold mb-0.5">• Lugares de Protección Sísmica:</strong>
-                            Identifícalos lejos de ventanas, espejos, muebles altos y objetos suspendidos.
-                        </div>
-
-                        <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
-                            <strong class="text-emerald-900 block font-bold mb-0.5">• Zona de seguridad exterior:</strong>
-                            Defínela alejada de edificios, muros, postes y cables eléctricos.
-                        </div>
-
-                        <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
-                            <strong class="text-emerald-900 block font-bold mb-0.5">• Anclaje de muebles & pasillos:</strong>
-                            Fija estantes, TVs y objetos pesados. Mantén vías de evacuación y puertas despejadas.
-                        </div>
-
-                        <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
-                            <strong class="text-emerald-900 block font-bold mb-0.5">• Suministros & Plan Familiar:</strong>
-                            Identifica llaves de paso (gas, agua, luz). Asigna roles para niños, adultos mayores, personas con discapacidad y mascotas. Acuerda punto de reunión y practica simulacros.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- COLUMNA 2 (PÁGINA 3: DURANTE - Protégete inmediatamente) -->
-                <div class="print-col fold-line pr-0 md:pr-4 space-y-2 p-3">
-                    <div class="bg-amber-600 text-white p-2 rounded-xl flex items-center justify-between mb-2">
-                        <span class="font-black text-[9px] uppercase tracking-wider bg-amber-900/60 px-2 py-0.5 rounded">Página 3</span>
-                        <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-person-shelter"></i> DURANTE EL SISMO</span>
-                    </div>
-
-                    <h2 class="text-sm font-black text-amber-900 border-b-2 border-amber-500 pb-1 mb-2 uppercase">PROTÉGETE INMEDIATAMENTE</h2>
-
-                    <div class="space-y-1.5 text-[10.5pt] text-slate-800 leading-tight">
-                        <p>• <strong>Mantén la calma:</strong> Actúa con tranquilidad y transmítela a quienes te rodean.</p>
-                        <p>• <strong>Estructura sismorresistente:</strong> Ubícate en un Lugar de Protección Sísmica. Protégete debajo o junto a un elemento firme, resguardando cabeza y cuello.</p>
-                        <p>• <strong>Aléjate de peligro:</strong> Distánciate de ventanas, vidrios, muebles altos y objetos que puedan caer.</p>
-                        <p>• <strong>Evita correr:</strong> No corras hacia las salidas durante el movimiento. <strong>Nunca uses ascensores.</strong></p>
-                        <p>• <strong>Si estás en la calle:</strong> Aléjate de edificios, muros, postes, árboles y cables eléctricos.</p>
-                        <p>• <strong>Si estás conduciendo:</strong> Reduce la velocidad y detente fuera de túneles, puentes o pasos a nivel.</p>
-                        <p>• <strong>En zona costera:</strong> Si el sismo dificulta mantenerte en pie, evacúa de inmediato hacia zona de seguridad (cota 30m).</p>
-                        <p>• <strong>En caso de atrapamiento:</strong> Conserva la calma, protege tus vías respiratorias y pide auxilio mediante golpes o silbato.</p>
-                    </div>
-                </div>
-
-                <!-- COLUMNA 3 (PÁGINAS 4 & 5: DESPUÉS DE UN SISMO & ALERTA COSTERA) -->
-                <div class="print-col space-y-2 p-3 flex flex-col justify-between">
-                    <div>
-                        <div class="bg-chileRed text-white p-2 rounded-xl flex items-center justify-between mb-2">
-                            <span class="font-black text-[9px] uppercase tracking-wider bg-red-950/60 px-2 py-0.5 rounded">Página 4 & 5</span>
-                            <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-house-flag"></i> DESPUÉS DEL SISMO</span>
-                        </div>
-
-                        <h2 class="text-sm font-black text-slate-900 border-b-2 border-chileRed pb-1 mb-2 uppercase">REVISA, AYUDA Y ALERTA COSTERA</h2>
-
-                        <div class="space-y-1 text-[10pt] text-slate-800 leading-tight">
-                            <p>• <strong>Réplicas & Evacuación:</strong> Atención a réplicas. Usa escaleras y zapatos cerrados.</p>
-                            <p>• <strong>Corte de suministros:</strong> Si es seguro, corta luz, agua y gas. No enciendas fósforos.</p>
-                            <p>• <strong>Primeros auxilios & Daños:</strong> Presta ayuda dentro de tus capacidades. No ingreses a inmuebles con grietas importantes o inclinados.</p>
-                            <p>• <strong>Cables caídos & SMS:</strong> No toques cables sueltos. Prioriza mensajes de texto para no saturar la red.</p>
-                            <p>• <strong>Alerta de Tsunami:</strong> En la costa, no regreses hasta la autorización oficial. El tsunami puede llegar tras el sismo.</p>
-                        </div>
-                    </div>
-
-                    <!-- Cuadro Destacado: Evacuación Vertical -->
-                    <div class="bg-blue-50 border-2 border-chileBlue rounded-xl p-2 text-[9.5pt] text-blue-950 space-y-1">
-                        <div class="font-black text-chileBlue uppercase flex items-center gap-1 border-b border-blue-200 pb-0.5 text-[10pt]">
-                            <i class="fa-solid fa-building-user text-red-600"></i> EVACUACIÓN VERTICAL (COSTA)
-                        </div>
-                        <p class="leading-tight font-medium">
-                            Si te encuentras en zona de inundación por tsunami sin tiempo ni posibilidad de evacuar horizontalmente hacia terreno elevado (cota 30m), resguárdate en un <strong>edificio de hormigón armado</strong> (nuevo/reciente) y sube por las escaleras al <strong>piso 10° o superior</strong>. Nunca uses ascensores.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'sismo-app-hogar';
-        let db = null;
-        let auth = null;
+      <!-- Registro del Hogar & Kit -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
         
-        let userId = localStorage.getItem('sismo_user_id');
-        if (!userId) {
-            userId = 'usr_' + Math.random().toString(36).substr(2, 8);
-            localStorage.setItem('sismo_user_id', userId);
-        }
+        <!-- Registro del Hogar -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <h3 class="font-bold text-base flex items-center gap-2 text-slate-100">
+              <i class="fa-solid fa-house-user text-amber-400"></i> Registro del Hogar & Ficha Familiar
+            </h3>
+            <span class="text-xs text-slate-400">Sincronización Automática</span>
+          </div>
 
-        let currentGroupCode = (localStorage.getItem('sismo_group_code') || 'FAMILIA-PEREZ').toUpperCase();
-        let currentStatus = localStorage.getItem('sismo_last_status') || 'safe';
-        let membersDataMap = {};
-        let unsubscribeGroupListener = null;
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold">🏠 Dirección del Hogar:</label>
+              <input type="text" id="app-input-address" oninput="syncInputs('address')" placeholder="Ej: Av. Brasil 456" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold">📍 Comuna / Ciudad:</label>
+              <input type="text" id="app-input-commune" oninput="syncInputs('commune')" placeholder="Ej: Rancagua" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold">🔲 Punto de Encuentro Familiar:</label>
+              <input type="text" id="app-input-meeting" oninput="syncInputs('meeting')" placeholder="Ej: Plaza Central / Cancha" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold">🛡️ Zona de Seguridad Exterior:</label>
+              <input type="text" id="app-input-safezone" oninput="syncInputs('safezone')" placeholder="Ej: Zona Cota 30m / Parque" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold">📞 Contacto Extracomunal:</label>
+              <input type="text" id="app-input-contact" oninput="syncInputs('contact')" placeholder="Ej: Tío Carlos" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold">📱 Teléfono del Contacto:</label>
+              <input type="tel" id="app-input-phone" oninput="syncInputs('phone')" placeholder="Ej: +56 9 1234 5678" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+          </div>
+        </div>
 
-        const inputGroupCode = document.getElementById('input-group-code');
-        const inputUserName = document.getElementById('input-user-name');
-        const inputUserNote = document.getElementById('input-user-note');
-        const chkAttachGps = document.getElementById('chk-attach-gps');
-        const batteryLevelText = document.getElementById('battery-level-text');
-        const displayGroupName = document.getElementById('display-group-name');
-        const membersContainer = document.getElementById('family-members-container');
+        <!-- Kit 72 Horas -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <h3 class="font-bold text-base flex items-center gap-2 text-slate-100">
+              <i class="fa-solid fa-suitcase-rolling text-amber-400"></i> Kit de Emergencia 72 Horas
+            </h3>
+            <span id="app-kit-counter" class="text-xs font-bold text-amber-400 bg-amber-950/80 px-2.5 py-1 rounded-full border border-amber-800/50">0 / 9 Listos</span>
+          </div>
 
-        const statTotalMembers = document.getElementById('stat-total-members');
-        const statSafeCount = document.getElementById('stat-safe-count');
-        const statEvacCount = document.getElementById('stat-evac-count');
-        const statHelpCount = document.getElementById('stat-help-count');
+          <div class="w-full bg-slate-950 rounded-full h-2.5 border border-slate-800 overflow-hidden">
+            <div id="app-kit-bar" class="bg-amber-500 h-full transition-all duration-300" style="width: 0%"></div>
+          </div>
 
-        inputGroupCode.value = currentGroupCode;
-        displayGroupName.textContent = currentGroupCode;
-        if (localStorage.getItem('sismo_user_name')) {
-            inputUserName.value = localStorage.getItem('sismo_user_name');
-        }
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>💧 Agua embotellada (2L/persona/día)</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>🥫 Alimentos no perecibles & abrelatas</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>🔦 Linterna & pilas de repuesto</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>📻 Radio portátil AM/FM</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>🩹 Botiquín & medicamentos habituales</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>🔑 Copia de llaves de hogar y auto</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>📋 Cédulas de identidad & dinero en efectivo</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>🐾 Comida, agua y correa de mascota</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700 sm:col-span-2">
+              <input type="checkbox" class="app-kit-cb rounded border-slate-700 text-amber-500 focus:ring-0" onchange="syncKitCheckboxes()">
+              <span>🛠️ Silbato, navaja, guantes, mascarillas & batería portátil</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        if ('getBattery' in navigator) {
-            navigator.getBattery().then(battery => {
-                const updateBatt = () => {
-                    const level = Math.round(battery.level * 100);
-                    batteryLevelText.textContent = `${level}%`;
-                };
-                updateBatt();
-                battery.addEventListener('levelchange', updateBatt);
-            });
-        }
+    <!-- SECCIÓN 2: PANEL SOS -->
+    <section id="section-tools" class="hidden space-y-5 max-w-4xl mx-auto">
+      
+      <div id="strobe-container" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white text-center space-y-4 shadow-2xl transition-all">
+        <div class="w-16 h-16 bg-red-600/20 text-red-500 border border-red-500/30 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-lg">
+          <i class="fa-solid fa-lightbulb"></i>
+        </div>
+        <h2 class="text-2xl font-black">Luz de Auxilio Visual / Estrobo</h2>
+        <p class="text-xs text-slate-400 max-w-md mx-auto">Destello estroboscópico de alta potencia para ubicación en penumbra o bajo escombros.</p>
+        <div class="pt-2">
+          <button id="btn-strobe" onclick="toggleStrobe()" class="bg-red-600 hover:bg-red-500 text-white font-extrabold px-6 py-3 rounded-xl text-sm transition shadow-lg shadow-red-950/50">
+            <i class="fa-solid fa-bolt mr-2"></i> Activar Luz Estroboscópica
+          </button>
+        </div>
+      </div>
 
-        window.addEventListener('online', updateNetBanner);
-        window.addEventListener('offline', updateNetBanner);
-        function updateNetBanner() {
-            const banner = document.getElementById('net-banner');
-            if (!navigator.onLine) {
-                banner.classList.remove('hidden');
-            } else {
-                banner.classList.add('hidden');
-            }
-        }
-        updateNetBanner();
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="text-xs font-bold text-red-400 uppercase tracking-wider"><i class="fa-solid fa-bullhorn mr-1"></i> Auxilio Sonoro</span>
+            <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded border border-red-800/50">Web Audio API</span>
+          </div>
+          <h3 class="font-bold text-base text-slate-100">Sirena & Silbato de Pánico SOS</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Frecuencia oscilante de alta densidad para guiar a grupos de rescate.</p>
+          <div class="grid grid-cols-2 gap-2 pt-2">
+            <button id="btn-siren" onclick="toggleSiren()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-red-950/40">
+              <i class="fa-solid fa-volume-high"></i> <span id="lbl-siren">Activar Sirena</span>
+            </button>
+            <button id="btn-whistle" onclick="toggleWhistle()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-amber-950/40">
+              <i class="fa-solid fa-bullhorn"></i> <span id="lbl-whistle">Silbato SOS</span>
+            </button>
+          </div>
+        </div>
 
-        async function initFirebase() {
-            try {
-                if (typeof __firebase_config !== 'undefined') {
-                    const firebaseConfig = JSON.parse(__firebase_config);
-                    const app = initializeApp(firebaseConfig);
-                    auth = getAuth(app);
-                    db = getFirestore(app);
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider"><i class="fa-solid fa-headset mr-1"></i> Asistente de Voz</span>
+            <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800/50">Speech Synthesis</span>
+          </div>
+          <h3 class="font-bold text-base text-slate-100">Guía Hablada de Pasos</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Instrucciones audibles de autoprotección en caso de falla de luz o pánico.</p>
+          <div class="pt-2">
+            <button id="btn-tts" onclick="speakEmergencySteps()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-3 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40">
+              <i class="fa-solid fa-volume-low"></i> <span id="lbl-tts">Escuchar Guía de Voz</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                    listenToFamilyGroup(currentGroupCode);
-                } else {
-                    renderMembersList();
-                }
-            } catch (err) {
-                console.warn('Operando con almacenamiento local:', err);
-                renderMembersList();
-            }
-        }
+      <!-- Directorio de Emergencia -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-white space-y-4 shadow-xl">
+        <h3 class="font-bold text-base text-slate-100 flex items-center gap-2">
+          <i class="fa-solid fa-phone text-chileRed"></i> Números Directos de Emergencia (Chile)
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <a href="tel:131" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
+            <span class="block text-[10px] text-slate-400 font-bold uppercase">SAMU</span>
+            <span class="text-lg font-black text-red-400">131</span>
+          </a>
+          <a href="tel:132" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
+            <span class="block text-[10px] text-slate-400 font-bold uppercase">Bomberos</span>
+            <span class="text-lg font-black text-amber-400">132</span>
+          </a>
+          <a href="tel:133" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
+            <span class="block text-[10px] text-slate-400 font-bold uppercase">Carabineros</span>
+            <span class="text-lg font-black text-emerald-400">133</span>
+          </a>
+          <a href="tel:134" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow">
+            <span class="block text-[10px] text-slate-400 font-bold uppercase">PDI</span>
+            <span class="text-lg font-black text-sky-400">134</span>
+          </a>
+          <a href="tel:1405" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl text-center block transition shadow col-span-2 sm:col-span-1">
+            <span class="block text-[10px] text-slate-400 font-bold uppercase">SENAPRED</span>
+            <span class="text-lg font-black text-blue-400">1405</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-        function listenToFamilyGroup(groupCode) {
-            if (!db) {
-                renderMembersList();
-                return;
-            }
+    <!-- SECCIÓN 3: SIMULACRO -->
+    <section id="section-drill" class="hidden space-y-5 max-w-2xl mx-auto">
+      
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white text-center space-y-4 shadow-2xl">
+        <div class="inline-block bg-emerald-950 text-emerald-400 border border-emerald-800/50 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+          Ensayo de Autoprotección
+        </div>
+        <h2 class="text-2xl font-black">Simulacro de Sismo Familiar</h2>
+        <p class="text-xs text-slate-400">Temporizador interactivo con voz para practicar la reacción de 60 segundos.</p>
+        <div class="py-6 my-2 bg-slate-950 rounded-2xl border border-slate-800 shadow-inner">
+          <span id="drill-timer" class="text-6xl font-black font-mono text-amber-400">00:60</span>
+          <p id="drill-instruction" class="text-sm font-bold text-slate-300 mt-3">Presiona "Iniciar Simulacro" para comenzar</p>
+        </div>
+        <div class="flex items-center justify-center gap-3">
+          <button id="btn-start-drill" onclick="startDrill()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-950/40">
+            <i class="fa-solid fa-play mr-1.5"></i> Iniciar Simulacro
+          </button>
+          <button onclick="resetDrill()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-3 rounded-xl text-xs transition">
+            Reiniciar
+          </button>
+        </div>
+      </div>
+    </section>
 
-            if (unsubscribeGroupListener) unsubscribeGroupListener();
+    <!-- SECCIÓN 4: CÓDIGO QR -->
+    <section id="section-qr" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-6 xl:col-span-7 space-y-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-qrcode text-sky-400"></i> Generador de Código QR
+          </h2>
+          <div class="space-y-3">
+            <label for="qr-url-input" class="block text-xs font-medium text-slate-300">URL o Enlace Web de Destino:</label>
+            <div class="relative flex items-center">
+              <input type="text" id="qr-url-input" value="https://monarde82.github.io/SISMO-APP-HOGAR/" oninput="updateQR()" 
+                  class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 font-mono focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div>
+              <label for="qr-dots-color" class="block text-xs font-medium text-slate-300 mb-1">Color QR:</label>
+              <input type="color" id="qr-dots-color" value="#0f172a" onchange="updateQR()" class="w-full h-9 rounded-xl cursor-pointer bg-slate-950 border border-slate-800 p-1">
+            </div>
+            <div>
+              <label for="qr-bg-color" class="block text-xs font-medium text-slate-300 mb-1">Color Fondo:</label>
+              <input type="color" id="qr-bg-color" value="#ffffff" onchange="updateQR()" class="w-full h-9 rounded-xl cursor-pointer bg-slate-950 border border-slate-800 p-1">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-6 xl:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center space-y-6 flex flex-col justify-between">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950 text-slate-400 text-xs font-medium border border-slate-800 mb-4">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Vista Previa QR
+          </span>
+          <h3 class="text-lg font-bold text-white">Escanea con tu Celular</h3>
+        </div>
+        <div class="relative p-6 bg-white rounded-2xl shadow-2xl border-4 border-slate-800 flex items-center justify-center my-2 mx-auto">
+          <div id="qr-code-target"></div>
+        </div>
+        <div class="space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="downloadQR('png')" class="px-3 py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-xl shadow transition">
+              <i class="fa-solid fa-file-image"></i> Descargar PNG
+            </button>
+            <button onclick="downloadQR('svg')" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-700 transition">
+              <i class="fa-solid fa-file-code"></i> Descargar SVG
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            const groupColRef = collection(db, 'artifacts', appId, 'public', 'data', `family_${groupCode.toLowerCase()}`);
+    <!-- SECCIÓN 5: TRÍPTICO SENAPRED -->
+    <section id="section-brochure" class="hidden space-y-6">
+      
+      <div class="no-print flex items-center justify-center gap-2 bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-800 max-w-md mx-auto">
+        <button id="tab-exterior" onclick="switchBrochureSide('exterior')" class="flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition bg-chileBlue text-white shadow">
+          Cara Externa (Portada & Registro)
+        </button>
+        <button id="tab-interior" onclick="switchBrochureSide('interior')" class="flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition text-slate-400 hover:text-white">
+          Cara Interna (Antes, Durante, Después)
+        </button>
+      </div>
 
-            unsubscribeGroupListener = onSnapshot(groupColRef, (snapshot) => {
-                membersDataMap = {};
-                snapshot.forEach((docSnap) => {
-                    membersDataMap[docSnap.id] = docSnap.data();
-                });
-                renderMembersList();
-            }, (error) => {
-                console.warn("Error escuchando Firestore:", error);
-                renderMembersList();
-            });
-        }
+      <!-- Cara Externa -->
+      <div id="side-exterior" class="print-page grid grid-cols-1 md:grid-cols-3 gap-6 bg-white text-slate-900 p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-200">
+        
+        <!-- Columna 1: Registro del Hogar -->
+        <div class="print-col fold-line pr-0 md:pr-4 flex flex-col justify-between space-y-2 bg-slate-50/80 p-3 rounded-xl border border-slate-200">
+          <div>
+            <div class="bg-slate-900 text-white p-2 rounded-xl flex items-center justify-between mb-2">
+              <span class="font-black text-[9px] uppercase tracking-wider bg-slate-800 px-2 py-0.5 rounded">Página 0</span>
+              <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-house-user text-amber-400"></i> INFORMACIÓN ÚTIL</span>
+            </div>
+            <h2 class="text-sm font-black text-slate-900 border-b-2 border-amber-400 pb-1 mb-2 uppercase">REGISTRO DEL HOGAR / COMUNIDAD</h2>
+            <div class="space-y-2 text-[11px]">
+              <div>
+                <label class="block font-bold text-slate-800 mb-0.5">🏠 DIRECCIÓN DEL HOGAR:</label>
+                <input type="text" id="input-address" placeholder="Ingresar dirección" oninput="syncInputs('address')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-800 mb-0.5">📍 COMUNA:</label>
+                <input type="text" id="input-commune" placeholder="Ingresar comuna" oninput="syncInputs('commune')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-800 mb-0.5">🔲 PUNTO DE ENCUENTRO FAMILIAR:</label>
+                <input type="text" id="input-meeting" placeholder="Definir punto" oninput="syncInputs('meeting')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-800 mb-0.5">🛡️ ZONA DE SEGURIDAD EXTERIOR:</label>
+                <input type="text" id="input-safezone" placeholder="Definir zona" oninput="syncInputs('safezone')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-800 mb-0.5">📞 CONTACTO FUERA DE LA ZONA:</label>
+                <input type="text" id="input-contact" placeholder="Nombre de contacto" oninput="syncInputs('contact')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-800 mb-0.5">📱 TELÉFONO DE CONTACTO:</label>
+                <input type="tel" id="input-phone" placeholder="Número de contacto" oninput="syncInputs('phone')" class="w-full px-2 py-1 border border-slate-300 rounded focus:outline-none bg-white text-xs font-semibold text-slate-900">
+              </div>
+            </div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-2 text-[10px] text-amber-900 space-y-1">
+            <div class="font-bold flex items-center gap-1 text-amber-700">
+              <i class="fa-solid fa-shield-cat"></i> Información Oficial: SENAPRED
+            </div>
+            <p class="leading-tight">En emergencia: Mantén la calma, evita saturar líneas telefónicas y prioriza los mensajes de texto.</p>
+          </div>
+        </div>
 
-        window.setUserStatus = async function(statusType) {
-            currentStatus = statusType;
-            localStorage.setItem('sismo_last_status', statusType);
+        <!-- Columna 2: Teléfonos y Kit -->
+        <div class="print-col fold-line pr-0 md:pr-4 flex flex-col justify-between space-y-2 p-3">
+          <div>
+            <div class="bg-chileRed text-white p-2 rounded-xl flex items-center justify-between mb-2">
+              <span class="font-black text-[9px] uppercase tracking-wider bg-red-950/60 px-2 py-0.5 rounded">Contraportada</span>
+              <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-phone-volume"></i> EMERGENCIA & KIT</span>
+            </div>
+            <h2 class="text-sm font-black text-slate-900 border-b-2 border-chileRed pb-1 mb-2 uppercase">TELÉFONOS DE EMERGENCIA</h2>
+            <div class="grid grid-cols-2 gap-1.5 mb-3">
+              <div class="bg-blue-50 border border-blue-200 p-1.5 rounded-lg text-center">
+                <span class="block text-[9px] font-bold text-blue-900">SAMU AMBULANCIA</span>
+                <a href="tel:131" class="text-base font-black text-chileBlue">131</a>
+              </div>
+              <div class="bg-red-50 border border-red-200 p-1.5 rounded-lg text-center">
+                <span class="block text-[9px] font-bold text-red-900">BOMBEROS</span>
+                <a href="tel:132" class="text-base font-black text-chileRed">132</a>
+              </div>
+              <div class="bg-blue-50 border border-blue-200 p-1.5 rounded-lg text-center">
+                <span class="block text-[9px] font-bold text-blue-900">CARABINEROS</span>
+                <a href="tel:133" class="text-base font-black text-chileBlue">133</a>
+              </div>
+              <div class="bg-slate-100 border border-slate-300 p-1.5 rounded-lg text-center">
+                <span class="block text-[9px] font-bold text-slate-800">PDI</span>
+                <a href="tel:134" class="text-base font-black text-slate-900">134</a>
+              </div>
+            </div>
+            <h2 class="text-sm font-black text-slate-900 border-b-2 border-amber-500 pb-1 mb-1.5 uppercase">KIT DE EMERGENCIA 72H</h2>
+            <p class="text-[10px] text-slate-600 mb-1 font-semibold">Prepara un kit accessible y conocido por todos:</p>
+            <ul class="text-[10px] space-y-1 text-slate-800 leading-tight">
+              <li class="flex items-start gap-1"><i class="fa-solid fa-bottle-water text-blue-600 mt-0.5"></i> <span><strong>Agua y alimentos:</strong> No perecibles y embotellada.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-lightbulb text-amber-500 mt-0.5"></i> <span><strong>Iluminación:</strong> Linterna y baterías de repuesto.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-radio text-emerald-600 mt-0.5"></i> <span><strong>Información:</strong> Radio a pilas o alternativa.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-kit-medical text-red-600 mt-0.5"></i> <span><strong>Salud:</strong> Botiquín y medicamentos habituales.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-key text-slate-600 mt-0.5"></i> <span><strong>Seguridad:</strong> Documentos y copia de llaves.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-shield text-slate-700 mt-0.5"></i> <span><strong>Protección:</strong> Silbato, guantes y mascarillas.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-battery-full text-green-600 mt-0.5"></i> <span><strong>Comunicación:</strong> Cargador portátil celular.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-users text-indigo-600 mt-0.5"></i> <span><strong>Específicos:</strong> Bebés, adultos mayores, mascotas.</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-money-bill-wave text-emerald-700 mt-0.5"></i> <span><strong>Dinero en Efectivo</strong></span></li>
+            </ul>
+          </div>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-1.5 text-[9.5pt] text-red-900 font-bold leading-tight">
+            ⚠️ Precaución: No uses velas, fósforos ni encendedores si existe posibilidad de fuga de gas.
+          </div>
+        </div>
 
-            const name = inputUserName.value.trim() || 'Familiar';
-            const note = inputUserNote.value.trim();
-            currentGroupCode = inputGroupCode.value.trim().toUpperCase() || 'FAMILIA-PEREZ';
+        <!-- Columna 3: Portada -->
+        <div class="print-col flex flex-col justify-between text-center bg-gradient-to-b from-slate-950 via-chileBlue to-slate-900 text-white p-5 rounded-xl relative overflow-hidden">
+          <div>
+            <div class="inline-block bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-blue-200 mb-3 border border-white/15 uppercase">
+              PLAN DE PROTECCIÓN FAMILIAR
+            </div>
+            <div class="w-16 h-16 bg-white text-chileBlue rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-xl mb-3 border-2 border-red-500">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h1 class="text-xl font-black tracking-tight uppercase leading-tight mb-1 text-white">
+              PLAN DE EMERGENCIA
+            </h1>
+            <h2 class="text-base font-extrabold text-amber-400 uppercase tracking-wide border-b border-white/20 pb-2 mb-3">
+              SISMO EN EL HOGAR
+            </h2>
+            <p class="text-xs font-semibold text-slate-200 italic">Antes, durante y después del sismo</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3 my-2 text-left space-y-1.5">
+            <div class="text-amber-300 font-black text-xs uppercase text-center border-b border-white/10 pb-1 mb-1">
+              ¡MANTRA DE SEGURIDAD!
+            </div>
+            <ul class="text-xs space-y-1.5 font-bold text-slate-100">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Protégete.</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Mantén la calma.</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Actúa con organización.</li>
+            </ul>
+          </div>
+          <div class="space-y-1 pt-2 border-t border-white/15 text-[10px] text-slate-300">
+            <p class="italic leading-tight">"La preparación reduce lesiones y facilita la ayuda oportuna ante emergencias."</p>
+            <p class="font-bold text-amber-300 uppercase tracking-wide">"La seguridad es tarea de todos"</p>
+          </div>
+        </div>
+      </div>
 
-            localStorage.setItem('sismo_user_name', name);
-            localStorage.setItem('sismo_group_code', currentGroupCode);
+      <!-- Cara Interna -->
+      <div id="side-interior" class="print-page hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 bg-white text-slate-900 p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-200">
+        <!-- Columna 1: Antes -->
+        <div class="print-col fold-line pr-0 md:pr-4 space-y-2 p-3">
+          <div class="bg-emerald-700 text-white p-2 rounded-xl flex items-center justify-between mb-2">
+            <span class="font-black text-[9px] uppercase tracking-wider bg-emerald-900/60 px-2 py-0.5 rounded">Página 2</span>
+            <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-clipboard-check"></i> ANTES DEL SISMO</span>
+          </div>
+          <h2 class="text-sm font-black text-emerald-900 border-b-2 border-emerald-600 pb-1 mb-2 uppercase">PREPARA TU HOGAR</h2>
+          <div class="space-y-1.5 text-[10.5pt] text-slate-800 leading-tight">
+            <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
+              <strong class="text-emerald-900 block font-bold mb-0.5">• Verificación de estructura:</strong>
+              Revisa el material de la vivienda. Si es de adobe o autoconstrucción no existen zonas seguras internas; planifica evacuación inmediata.
+            </div>
+            <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
+              <strong class="text-emerald-900 block font-bold mb-0.5">• Lugares de Protección Sísmica:</strong>
+              Identifícalos lejos de ventanas, espejos, muebles altos y objetos suspendidos.
+            </div>
+            <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
+              <strong class="text-emerald-900 block font-bold mb-0.5">• Zona de seguridad exterior:</strong>
+              Defínela alejada de edificios, muros, postes y cables eléctricos.
+            </div>
+            <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
+              <strong class="text-emerald-900 block font-bold mb-0.5">• Anclaje de muebles & pasillos:</strong>
+              Fija estantes, TVs y objetos pesados. Mantén vías de evacuación y puertas despejadas.
+            </div>
+            <div class="bg-emerald-50/80 p-2 rounded-lg border border-emerald-200">
+              <strong class="text-emerald-900 block font-bold mb-0.5">• Suministros & Plan Familiar:</strong>
+              Identifica llaves de paso (gas, agua, luz). Asigna roles para niños, adultos mayores, personas con discapacidad y mascotas. Acuerda punto de reunión y practica simulacros.
+            </div>
+          </div>
+        </div>
 
-            let gpsData = null;
-            if (chkAttachGps.checked && navigator.geolocation) {
-                try {
-                    const pos = await new Promise((resolve, reject) => {
-                        navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 4000 });
-                    });
-                    gpsData = {
-                        lat: pos.coords.latitude.toFixed(5),
-                        lng: pos.coords.longitude.toFixed(5)
-                    };
-                } catch (e) {}
-            }
+        <!-- Columna 2: Durante -->
+        <div class="print-col fold-line pr-0 md:pr-4 space-y-2 p-3">
+          <div class="bg-amber-600 text-white p-2 rounded-xl flex items-center justify-between mb-2">
+            <span class="font-black text-[9px] uppercase tracking-wider bg-amber-900/60 px-2 py-0.5 rounded">Página 3</span>
+            <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-person-shelter"></i> DURANTE EL SISMO</span>
+          </div>
+          <h2 class="text-sm font-black text-amber-900 border-b-2 border-amber-500 pb-1 mb-2 uppercase">PROTÉGETE INMEDIATAMENTE</h2>
+          <div class="space-y-1.5 text-[10.5pt] text-slate-800 leading-tight">
+            <p>• <strong>Mantén la calma:</strong> Actúa con tranquilidad y transmítela a quienes te rodean.</p>
+            <p>• <strong>Estructura sismorresistente:</strong> Ubícate en un Lugar de Protección Sísmica. Protégete debajo o junto a un elemento firme, resguardando cabeza y cuello.</p>
+            <p>• <strong>Aléjate de peligro:</strong> Distánciate de ventanas, vidrios, muebles altos y objetos que puedan caer.</p>
+            <p>• <strong>Evita correr:</strong> No corras hacia las salidas durante el movimiento. <strong>Nunca uses ascensores.</strong></p>
+            <p>• <strong>Si estás en la calle:</strong> Aléjate de edificios, muros, postes, árboles y cables eléctricos.</p>
+            <p>• <strong>Si estás conduciendo:</strong> Reduce la velocidad y detente fuera de túneles, puentes o pasos a nivel.</p>
+            <p>• <strong>En zona costera:</strong> Si el sismo dificulta mantenerte en pie, evacúa de inmediato hacia zona de seguridad (cota 30m).</p>
+            <p>• <strong>En caso de atrapamiento:</strong> Conserva la calma, protege tus vías respiratorias y pide auxilio mediante golpes o silbato.</p>
+          </div>
+        </div>
 
-            const payload = {
-                uid: userId,
-                name: name,
-                status: statusType, // 'safe', 'evac', 'help'
-                note: note,
-                battery: batteryLevelText.textContent,
-                gps: gpsData,
-                updatedAt: new Date().toISOString(),
-                timeStr: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            };
+        <!-- Columna 3: Después -->
+        <div class="print-col space-y-2 p-3 flex flex-col justify-between">
+          <div>
+            <div class="bg-chileRed text-white p-2 rounded-xl flex items-center justify-between mb-2">
+              <span class="font-black text-[9px] uppercase tracking-wider bg-red-950/60 px-2 py-0.5 rounded">Página 4 & 5</span>
+              <span class="font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-house-flag"></i> DESPUÉS DEL SISMO</span>
+            </div>
+            <h2 class="text-sm font-black text-slate-900 border-b-2 border-chileRed pb-1 mb-2 uppercase">REVISA, AYUDA Y ALERTA COSTERA</h2>
+            <div class="space-y-1 text-[10pt] text-slate-800 leading-tight">
+              <p>• <strong>Réplicas & Evacuación:</strong> Atención a réplicas. Usa escaleras y zapatos cerrados.</p>
+              <p>• <strong>Corte de suministros:</strong> Si es seguro, corta luz, agua y gas. No enciendas fósforos.</p>
+              <p>• <strong>Primeros auxilios & Daños:</strong> Presta ayuda dentro de tus capacidades. No ingreses a inmuebles con grietas importantes o inclinados.</p>
+              <p>• <strong>Cables caídos & SMS:</strong> No toques cables sueltos. Prioriza mensajes de texto para no saturar la red.</p>
+              <p>• <strong>Alerta de Tsunami:</strong> En la costa, no regreses hasta la autorización oficial. El tsunami puede llegar tras el sismo.</p>
+            </div>
+          </div>
+          <div class="bg-blue-50 border-2 border-chileBlue rounded-xl p-2 text-[9.5pt] text-blue-950 space-y-1">
+            <div class="font-black text-chileBlue uppercase flex items-center gap-1 border-b border-blue-200 pb-0.5 text-[10pt]">
+              <i class="fa-solid fa-building-user text-red-600"></i> EVACUACIÓN VERTICAL (COSTA)
+            </div>
+            <p class="leading-tight font-medium">
+              Si te encuentras en zona de inundación por tsunami sin tiempo ni posibilidad de evacuar horizontalmente hacia terreno elevado (cota 30m), resguárdate en un <strong>edificio de hormigón armado</strong> (nuevo/reciente) y sube por las escaleras al <strong>piso 10° o superior</strong>. Nunca uses ascensores.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            membersDataMap[userId] = payload;
-            renderMembersList();
+  </main>
 
-            if (db) {
-                try {
-                    const memberDocRef = doc(db, 'artifacts', appId, 'public', 'data', `family_${currentGroupCode.toLowerCase()}`, userId);
-                    await setDoc(memberDocRef, payload, { merge: true });
-                    window.showToast(`Estado "${getStatusLabel(statusType)}" transmitido.`, "success");
-                } catch (err) {
-                    window.showToast('Guardado localmente.', "info");
-                }
-            } else {
-                window.showToast(`Estado cambiado: ${getStatusLabel(statusType)}`, "info");
-            }
+  <!-- ============================================ -->
+  <!-- LÓGICA DE LA APLICACIÓN -->
+  <!-- ============================================ -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // ============================================
+    // CONFIGURACIÓN Y VARIABLES GLOBALES
+    // ============================================
+    const appId = typeof window.__app_id !== 'undefined' ? window.__app_id : 'sismo-app-hogar';
+    let db = null;
+    let auth = null;
+    
+    let userId = localStorage.getItem('sismo_user_id');
+    if (!userId) {
+      userId = 'usr_' + Math.random().toString(36).substr(2, 8);
+      localStorage.setItem('sismo_user_id', userId);
+    }
+
+    let currentGroupCode = (localStorage.getItem('sismo_group_code') || 'FAMILIA-PEREZ').toUpperCase();
+    let currentStatus = localStorage.getItem('sismo_last_status') || 'safe';
+    let membersDataMap = {};
+    let unsubscribeGroupListener = null;
+
+    const inputGroupCode = document.getElementById('input-group-code');
+    const inputUserName = document.getElementById('input-user-name');
+    const inputUserNote = document.getElementById('input-user-note');
+    const chkAttachGps = document.getElementById('chk-attach-gps');
+    const batteryLevelText = document.getElementById('battery-level-text');
+    const displayGroupName = document.getElementById('display-group-name');
+    const membersContainer = document.getElementById('family-members-container');
+
+    const statTotalMembers = document.getElementById('stat-total-members');
+    const statSafeCount = document.getElementById('stat-safe-count');
+    const statEvacCount = document.getElementById('stat-evac-count');
+    const statHelpCount = document.getElementById('stat-help-count');
+
+    inputGroupCode.value = currentGroupCode;
+    displayGroupName.textContent = currentGroupCode;
+    if (localStorage.getItem('sismo_user_name')) {
+      inputUserName.value = localStorage.getItem('sismo_user_name');
+    }
+
+    // Batería
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(battery => {
+        const updateBatt = () => {
+          const level = Math.round(battery.level * 100);
+          batteryLevelText.textContent = `${level}%`;
         };
+        updateBatt();
+        battery.addEventListener('levelchange', updateBatt);
+      });
+    }
 
-        window.handleGroupCodeChange = function() {
-            currentGroupCode = inputGroupCode.value.trim().toUpperCase() || 'FAMILIA-PEREZ';
-            inputGroupCode.value = currentGroupCode;
-            displayGroupName.textContent = currentGroupCode;
-            localStorage.setItem('sismo_group_code', currentGroupCode);
-            listenToFamilyGroup(currentGroupCode);
-            window.showToast(`Conectado al grupo: ${currentGroupCode}`, "info");
-        };
+    // Banner offline
+    window.addEventListener('online', updateNetBanner);
+    window.addEventListener('offline', updateNetBanner);
+    function updateNetBanner() {
+      const banner = document.getElementById('net-banner');
+      if (!navigator.onLine) {
+        banner.classList.remove('hidden');
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+    updateNetBanner();
 
-        function getStatusLabel(type) {
-            if (type === 'safe') return '¡A Salvo! ✅';
-            if (type === 'evac') return 'En Evacuación 🚶‍♂️';
-            if (type === 'help') return '¡REQUIERE AYUDA! 🚨';
-            return 'Desconocido';
+    // ============================================
+    // INICIALIZACIÓN FIREBASE
+    // ============================================
+    async function initFirebase() {
+      try {
+        if (typeof window.__firebase_config !== 'undefined') {
+          const firebaseConfig = JSON.parse(window.__firebase_config);
+          const app = initializeApp(firebaseConfig);
+          auth = getAuth(app);
+          db = getFirestore(app);
+
+          if (typeof window.__initial_auth_token !== 'undefined' && window.__initial_auth_token) {
+            await signInWithCustomToken(auth, window.__initial_auth_token);
+          } else {
+            await signInAnonymously(auth);
+          }
+          listenToFamilyGroup(currentGroupCode);
+        } else {
+          renderMembersList();
         }
-
-        function renderMembersList() {
-            membersContainer.innerHTML = '';
-
-            if (!membersDataMap[userId]) {
-                membersDataMap[userId] = {
-                    uid: userId,
-                    name: inputUserName.value.trim() || 'Tu Dispositivo (Tú)',
-                    status: currentStatus,
-                    note: inputUserNote.value.trim(),
-                    battery: batteryLevelText.textContent,
-                    timeStr: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                };
-            }
-
-            const keys = Object.keys(membersDataMap);
-            let countSafe = 0, countEvac = 0, countHelp = 0;
-
-            keys.forEach((uid) => {
-                const member = membersDataMap[uid];
-                const isMe = uid === userId;
-                const status = member.status || 'safe';
-
-                if (status === 'safe') countSafe++;
-                else if (status === 'evac') countEvac++;
-                else if (status === 'help') countHelp++;
-
-                const displayName = isMe ? `${member.name || 'Tu Dispositivo'} (Tú)` : (member.name || 'Integrante');
-                const timeText = member.timeStr || 'Ahora';
-
-                let statusBadge = '';
-                let borderStyle = 'border-slate-800 bg-slate-950/80';
-
-                if (status === 'safe') {
-                    statusBadge = '<span class="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2.5 py-1 rounded-lg text-[10px] font-extrabold">¡A Salvo! ✅</span>';
-                } else if (status === 'evac') {
-                    statusBadge = '<span class="bg-amber-950 text-amber-300 border border-amber-800 px-2.5 py-1 rounded-lg text-[10px] font-extrabold">En Evacuación 🚶‍♂️</span>';
-                    borderStyle = 'border-amber-800/80 bg-amber-950/20';
-                } else {
-                    statusBadge = '<span class="bg-red-900 text-red-100 border border-red-700 animate-pulse px-2.5 py-1 rounded-lg text-[10px] font-extrabold">¡AYUDA! 🚨</span>';
-                    borderStyle = 'border-red-800/80 bg-red-950/40 shadow-lg shadow-red-950/50';
-                }
-
-                const card = document.createElement('div');
-                card.className = `p-3.5 rounded-2xl border ${borderStyle} flex flex-col justify-between gap-2.5 transition-all`;
-
-                let gpsLink = '';
-                if (member.gps && member.gps.lat) {
-                    gpsLink = `<a href="https://maps.google.com/?q=${member.gps.lat},${member.gps.lng}" target="_blank" rel="noopener" class="text-[10px] text-sky-400 hover:underline flex items-center gap-1 font-mono">
-                        <i class="fa-solid fa-map-pin"></i> GPS: ${member.gps.lat}, ${member.gps.lng}
-                    </a>`;
-                }
-
-                card.innerHTML = `
-                    <div class="flex items-start justify-between gap-2">
-                        <div class="truncate">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-full ${status === 'safe' ? 'bg-emerald-500' : (status === 'evac' ? 'bg-amber-500' : 'bg-red-500 animate-ping')}"></span>
-                                <h4 class="font-extrabold text-xs ${isMe ? 'text-amber-400' : 'text-white'} truncate">${displayName}</h4>
-                            </div>
-                            <p class="text-[10px] text-slate-400 mt-0.5">🕒 ${timeText} | 🔋 ${member.battery || '--%'}</p>
-                        </div>
-                        ${statusBadge}
-                    </div>
-
-                    ${member.note ? `<p class="text-[11px] text-slate-300 italic bg-slate-900/90 p-2 rounded-xl border border-slate-800/60 leading-tight">${member.note}</p>` : ''}
-
-                    ${gpsLink}
-                `;
-
-                membersContainer.appendChild(card);
-            });
-
-            statTotalMembers.textContent = keys.length;
-            statSafeCount.textContent = countSafe;
-            statEvacCount.textContent = countEvac;
-            statHelpCount.textContent = countHelp;
-        }
-
-        initFirebase();
-    </script>
-
-    <script>
-        function generateReportText() {
-            const name = document.getElementById('input-user-name').value.trim() || 'Familiar';
-            const note = document.getElementById('input-user-note').value.trim();
-            const group = document.getElementById('input-group-code').value.trim().toUpperCase() || 'FAMILIA-PEREZ';
-            const battery = document.getElementById('battery-level-text').textContent;
-            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            
-            let statusStr = "¡ESTOY A SALVO! ✅";
-            const lastStatus = localStorage.getItem('sismo_last_status') || 'safe';
-            if (lastStatus === 'evac') statusStr = "EN EVACUACIÓN 🚶‍♂️";
-            if (lastStatus === 'help') statusStr = "¡NECESITO AYUDA URGENTE! 🚨";
-
-            let noteText = note ? `\n📝 *Nota:* ${note}` : '';
-
-            return `🚨 *REPORTE DE SISMO - RED FAMILIAR*
-👤 *Nombre:* ${name}
-🛡️ *Estado:* ${statusStr}${noteText}
-🔋 *Batería:* ${battery} | 🕒 *Hora:* ${time}
-👥 *Grupo Familiar:* ${group}
-
-🔗 *App Web:* https://monarde82.github.io/SISMO-APP-HOGAR/`;
-        }
-
-        function shareWhatsApp() {
-            const text = generateReportText();
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
-            showToast("Abriendo WhatsApp...", "success");
-        }
-
-        function shareTelegram() {
-            const text = generateReportText();
-            window.open(`https://t.me/share/url?url=${encodeURIComponent('https://monarde82.github.io/SISMO-APP-HOGAR/')}&text=${encodeURIComponent(text)}`, '_blank');
-            showToast("Abriendo Telegram...", "success");
-        }
-
-        function shareSMS() {
-            const text = generateReportText();
-            window.open(`sms:?body=${encodeURIComponent(text)}`, '_self');
-        }
-
-        function copyReportText() {
-            const text = generateReportText();
-            copyToClipboard(text);
-            showToast("Reporte copiado al portapapeles.", "success");
-        }
-
-        function copyGroupCode() {
-            const code = document.getElementById('input-group-code').value.trim().toUpperCase();
-            copyToClipboard(code);
-            showToast(`Código ${code} copiado.`, "info");
-        }
-
-        function copyToClipboard(text) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-            } else {
-                const t = document.createElement('textarea');
-                t.value = text;
-                document.body.appendChild(t);
-                t.select();
-                document.execCommand('copy');
-                document.body.removeChild(t);
-            }
-        }
-
-        function showToast(msg, type = 'info') {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            const toastIcon = document.getElementById('toast-icon');
-
-            toastMsg.textContent = msg;
-            if (type === 'error') {
-                toastIcon.className = 'fa-solid fa-triangle-exclamation text-red-400 text-base';
-            } else if (type === 'success') {
-                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-base';
-            } else {
-                toastIcon.className = 'fa-solid fa-circle-info text-blue-400 text-base';
-            }
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        function switchSection(target) {
-            const sections = ['protection', 'tools', 'drill', 'qr', 'brochure'];
-            sections.forEach(s => {
-                const secEl = document.getElementById(`section-${s}`);
-                const navEl = document.getElementById(`nav-${s}`);
-                if (s === target) {
-                    secEl.classList.remove('hidden');
-                    if (navEl) navEl.className = 'px-3 py-1.5 rounded-lg bg-chileRed text-white transition flex items-center gap-1.5 shrink-0 shadow';
-                } else {
-                    secEl.classList.add('hidden');
-                    if (navEl) navEl.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0';
-                }
-            });
-        }
-
-        function switchBrochureSide(side) {
-            const exterior = document.getElementById('side-exterior');
-            const interior = document.getElementById('side-interior');
-            const tabExt = document.getElementById('tab-exterior');
-            const tabInt = document.getElementById('tab-interior');
-
-            if (side === 'exterior') {
-                exterior.classList.remove('hidden');
-                interior.classList.add('hidden');
-                tabExt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition bg-chileBlue text-white shadow';
-                tabInt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition text-slate-400 hover:text-white';
-            } else {
-                exterior.classList.add('hidden');
-                interior.classList.remove('hidden');
-                tabInt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition bg-chileBlue text-white shadow';
-                tabExt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition text-slate-400 hover:text-white';
-            }
-        }
-
-        let audioCtx = null;
-        let sirenOsc = null;
-        let whistleOsc = null;
-        let isStrobeOn = false;
-
-        function toggleSiren() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-            if (sirenOsc) {
-                sirenOsc.stop();
-                sirenOsc = null;
-                document.getElementById('lbl-siren').textContent = 'Activar Sirena';
-                showToast("Sirena detenida");
-            } else {
-                if (whistleOsc) toggleWhistle();
-
-                sirenOsc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                sirenOsc.type = 'sawtooth';
-                
-                const now = audioCtx.currentTime;
-                sirenOsc.frequency.setValueAtTime(600, now);
-                sirenOsc.frequency.linearRampToValueAtTime(1200, now + 0.5);
-
-                sirenOsc.connect(gain);
-                gain.connect(audioCtx.destination);
-                sirenOsc.start();
-
-                setInterval(() => {
-                    if (sirenOsc && audioCtx) {
-                        const t = audioCtx.currentTime;
-                        sirenOsc.frequency.setValueAtTime(600, t);
-                        sirenOsc.frequency.linearRampToValueAtTime(1200, t + 0.5);
-                    }
-                }, 1000);
-
-                document.getElementById('lbl-siren').textContent = 'Detener Sirena';
-                showToast("Sirena SOS activada", "error");
-            }
-        }
-
-        function toggleWhistle() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-            if (whistleOsc) {
-                whistleOsc.stop();
-                whistleOsc = null;
-                document.getElementById('lbl-whistle').textContent = 'Silbato SOS';
-            } else {
-                if (sirenOsc) toggleSiren();
-
-                whistleOsc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                whistleOsc.type = 'sine';
-                whistleOsc.frequency.setValueAtTime(2800, audioCtx.currentTime);
-
-                whistleOsc.connect(gain);
-                gain.connect(audioCtx.destination);
-                whistleOsc.start();
-
-                document.getElementById('lbl-whistle').textContent = 'Detener Silbato';
-                showToast("Silbato activado");
-            }
-        }
-
-        function toggleStrobe() {
-            const container = document.getElementById('strobe-container');
-            const btn = document.getElementById('btn-strobe');
-
-            isStrobeOn = !isStrobeOn;
-            if (isStrobeOn) {
-                container.classList.add('strobe-active');
-                btn.textContent = 'Detener Luz Estroboscópica';
-                showToast("Luz estroboscópica activada", "error");
-            } else {
-                container.classList.remove('strobe-active');
-                btn.innerHTML = '<i class="fa-solid fa-bolt mr-2"></i> Activar Luz Estroboscópica';
-            }
-        }
-
-        function speakEmergencySteps() {
-            if ('speechSynthesis' in window) {
-                if (window.speechSynthesis.speaking) {
-                    window.speechSynthesis.cancel();
-                    document.getElementById('lbl-tts').textContent = 'Escuchar Guía de Voz';
-                    return;
-                }
-
-                const speechText = "Instrucciones de emergencia sísmica. Primero: Mantén la calma. Segundo: Agáchate, cúbrete debajo de una mesa firme y sujétate. Tercero: Aléjate de ventanas y muebles altos. Cuarto: No usen ascensores. Si estás en zona costera, evacúa hacia zona alta o realiza evacuación vertical piso diez o superior.";
-                const utterance = new SpeechSynthesisUtterance(speechText);
-                utterance.lang = 'es-CL';
-                utterance.rate = 0.95;
-
-                utterance.onstart = () => { document.getElementById('lbl-tts').textContent = 'Detener Voz'; };
-                utterance.onend = () => { document.getElementById('lbl-tts').textContent = 'Escuchar Guía de Voz'; };
-
-                window.speechSynthesis.speak(utterance);
-                showToast("Reproduciendo guía de voz");
-            } else {
-                showToast("Navegador sin soporte de voz", "error");
-            }
-        }
-
-        let drillTimer = null;
-        let drillSeconds = 60;
-
-        function startDrill() {
-            if (drillTimer) return;
-
-            drillSeconds = 60;
-            const timerEl = document.getElementById('drill-timer');
-            const instEl = document.getElementById('drill-instruction');
-            const btn = document.getElementById('btn-start-drill');
-
-            btn.disabled = true;
-            btn.classList.add('opacity-50');
-
-            if ('speechSynthesis' in window) {
-                const startSpeech = new SpeechSynthesisUtterance("Inicio de simulacro de sismo. ¡Agáchate, cúbrete y sujétate!");
-                startSpeech.lang = 'es-CL';
-                window.speechSynthesis.speak(startSpeech);
-            }
-
-            drillTimer = setInterval(() => {
-                drillSeconds--;
-                const secs = drillSeconds < 10 ? `0${drillSeconds}` : drillSeconds;
-                timerEl.textContent = `00:${secs}`;
-
-                if (drillSeconds === 45) {
-                    instEl.textContent = "¡SISMO EN PROCESO! Permanece protegido bajo elemento firme.";
-                } else if (drillSeconds === 30) {
-                    instEl.textContent = "El movimiento disminuye. Evalúa la seguridad de tu entorno.";
-                } else if (drillSeconds === 15) {
-                    instEl.textContent = "Corta los suministros de gas y luz si es necesario.";
-                } else if (drillSeconds <= 0) {
-                    clearInterval(drillTimer);
-                    drillTimer = null;
-                    timerEl.textContent = "00:00";
-                    instEl.textContent = "¡Simulacro completado! Reúnete en la zona de seguridad.";
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-50');
-                }
-            }, 1000);
-        }
-
-        function resetDrill() {
-            if (drillTimer) {
-                clearInterval(drillTimer);
-                drillTimer = null;
-            }
-            document.getElementById('drill-timer').textContent = "00:60";
-            document.getElementById('drill-instruction').textContent = 'Presiona "Iniciar Simulacro" para comenzar';
-            const btn = document.getElementById('btn-start-drill');
-            btn.disabled = false;
-            btn.classList.remove('opacity-50');
-        }
-
-        function syncInputs(field) {
-            const appInput = document.getElementById(`app-input-${field}`);
-            const brochureInput = document.getElementById(`input-${field}`);
-
-            if (appInput && brochureInput) {
-                brochureInput.value = appInput.value;
-            }
-
-            const fields = ['address', 'commune', 'meeting', 'safezone', 'contact', 'phone'];
-            const data = {};
-            fields.forEach(f => {
-                const el = document.getElementById(`app-input-${f}`);
-                if (el) data[f] = el.value;
-            });
-            localStorage.setItem('sismo_app_data', JSON.stringify(data));
-        }
-
-        function loadSavedData() {
-            const saved = localStorage.getItem('sismo_app_data');
-            if (saved) {
-                try {
-                    const data = JSON.parse(saved);
-                    Object.keys(data).forEach(key => {
-                        const appEl = document.getElementById(`app-input-${key}`);
-                        const brochureEl = document.getElementById(`input-${key}`);
-                        if (appEl) appEl.value = data[key];
-                        if (brochureEl) brochureEl.value = data[key];
-                    });
-                } catch(e) {}
-            }
-        }
-
-        function syncKitCheckboxes() {
-            const appCbs = document.querySelectorAll('.app-kit-cb');
-
-            let checkedCount = 0;
-            appCbs.forEach((cb) => {
-                if (cb.checked) checkedCount++;
-            });
-
-            const total = appCbs.length;
-            const pct = Math.round((checkedCount / total) * 100);
-
-            document.getElementById('app-kit-counter').textContent = `${checkedCount} / ${total} Listos`;
-            document.getElementById('app-kit-bar').style.width = `${pct}%`;
-        }
-
-        let qrCodeObj = null;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadSavedData();
-
-            const urlInput = document.getElementById('qr-url-input');
-            const dotsColor = document.getElementById('qr-dots-color');
-            const bgColor = document.getElementById('qr-bg-color');
-
-            qrCodeObj = new QRCodeStyling({
-                width: 220,
-                height: 220,
-                type: "canvas",
-                data: urlInput.value.trim() || "https://monarde82.github.io/SISMO-APP-HOGAR/",
-                dotsOptions: { color: dotsColor.value, type: "rounded" },
-                backgroundOptions: { color: bgColor.value }
-            });
-
-            qrCodeObj.append(document.getElementById('qr-code-target'));
+      } catch (err) {
+        console.warn('Operando con almacenamiento local (Firebase no disponible):', err);
+        renderMembersList();
+      }
+    }
+
+    function listenToFamilyGroup(groupCode) {
+      if (!db) {
+        renderMembersList();
+        return;
+      }
+      if (unsubscribeGroupListener) unsubscribeGroupListener();
+
+      const groupColRef = collection(db, 'artifacts', appId, 'public', 'data', `family_${groupCode.toLowerCase()}`);
+
+      unsubscribeGroupListener = onSnapshot(groupColRef, (snapshot) => {
+        membersDataMap = {};
+        snapshot.forEach((docSnap) => {
+          membersDataMap[docSnap.id] = docSnap.data();
         });
+        renderMembersList();
+      }, (error) => {
+        console.warn("Error escuchando Firestore:", error);
+        renderMembersList();
+      });
+    }
 
-        function updateQR() {
-            if (!qrCodeObj) return;
-            const urlInput = document.getElementById('qr-url-input');
-            const dotsColor = document.getElementById('qr-dots-color');
-            const bgColor = document.getElementById('qr-bg-color');
+    // ============================================
+    // ESTADO DEL USUARIO (FIREBASE + LOCAL)
+    // ============================================
+    window.setUserStatus = async function(statusType) {
+      currentStatus = statusType;
+      localStorage.setItem('sismo_last_status', statusType);
 
-            qrCodeObj.update({
-                data: urlInput.value.trim() || "https://monarde82.github.io/SISMO-APP-HOGAR/",
-                dotsOptions: { color: dotsColor.value },
-                backgroundOptions: { color: bgColor.value }
-            });
+      const name = inputUserName.value.trim() || 'Familiar';
+      const note = inputUserNote.value.trim();
+      currentGroupCode = normalizeGroupCode(inputGroupCode.value.trim());
+
+      localStorage.setItem('sismo_user_name', name);
+      localStorage.setItem('sismo_group_code', currentGroupCode);
+
+      let gpsData = null;
+      if (chkAttachGps.checked && navigator.geolocation) {
+        try {
+          const pos = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 4000 });
+          });
+          gpsData = {
+            lat: pos.coords.latitude.toFixed(5),
+            lng: pos.coords.longitude.toFixed(5)
+          };
+        } catch (e) {
+          console.warn('Geolocalización fallida:', e);
+        }
+      }
+
+      const payload = {
+        uid: userId,
+        name: name,
+        status: statusType,
+        note: note,
+        battery: batteryLevelText.textContent,
+        gps: gpsData,
+        updatedAt: new Date().toISOString(),
+        timeStr: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      membersDataMap[userId] = payload;
+      renderMembersList();
+
+      if (db) {
+        try {
+          const memberDocRef = doc(db, 'artifacts', appId, 'public', 'data', `family_${currentGroupCode.toLowerCase()}`, userId);
+          await setDoc(memberDocRef, payload, { merge: true });
+          window.showToast(`Estado "${getStatusLabel(statusType)}" transmitido.`, "success");
+        } catch (err) {
+          window.showToast('Guardado localmente (error en Firestore).', "info");
+        }
+      } else {
+        window.showToast(`Estado cambiado: ${getStatusLabel(statusType)} (modo local)`, "info");
+      }
+    };
+
+    window.handleGroupCodeChange = function() {
+      currentGroupCode = normalizeGroupCode(inputGroupCode.value.trim());
+      inputGroupCode.value = currentGroupCode;
+      displayGroupName.textContent = currentGroupCode;
+      localStorage.setItem('sismo_group_code', currentGroupCode);
+      listenToFamilyGroup(currentGroupCode);
+      window.showToast(`Conectado al grupo: ${currentGroupCode}`, "info");
+    };
+
+    function normalizeGroupCode(raw) {
+      const code = (raw || '').toUpperCase().replace(/[^A-Z0-9\-_]/g, '');
+      return code || 'FAMILIA-PEREZ';
+    }
+
+    function getStatusLabel(type) {
+      if (type === 'safe') return '¡A Salvo! ✅';
+      if (type === 'evac') return 'En Evacuación 🚶‍♂️';
+      if (type === 'help') return '¡REQUIERE AYUDA! 🚨';
+      return 'Desconocido';
+    }
+
+    function renderMembersList() {
+      membersContainer.innerHTML = '';
+
+      if (!membersDataMap[userId]) {
+        membersDataMap[userId] = {
+          uid: userId,
+          name: inputUserName.value.trim() || 'Tu Dispositivo (Tú)',
+          status: currentStatus,
+          note: inputUserNote.value.trim(),
+          battery: batteryLevelText.textContent,
+          timeStr: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+      }
+
+      const keys = Object.keys(membersDataMap);
+      let countSafe = 0, countEvac = 0, countHelp = 0;
+
+      keys.forEach((uid) => {
+        const member = membersDataMap[uid];
+        const isMe = uid === userId;
+        const status = member.status || 'safe';
+
+        if (status === 'safe') countSafe++;
+        else if (status === 'evac') countEvac++;
+        else if (status === 'help') countHelp++;
+
+        const displayName = isMe ? `${member.name || 'Tu Dispositivo'} (Tú)` : (member.name || 'Integrante');
+        const timeText = member.timeStr || 'Ahora';
+
+        let statusBadge = '';
+        let borderStyle = 'border-slate-800 bg-slate-950/80';
+
+        if (status === 'safe') {
+          statusBadge = '<span class="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2.5 py-1 rounded-lg text-[10px] font-extrabold">¡A Salvo! ✅</span>';
+        } else if (status === 'evac') {
+          statusBadge = '<span class="bg-amber-950 text-amber-300 border border-amber-800 px-2.5 py-1 rounded-lg text-[10px] font-extrabold">En Evacuación 🚶‍♂️</span>';
+          borderStyle = 'border-amber-800/80 bg-amber-950/20';
+        } else {
+          statusBadge = '<span class="bg-red-900 text-red-100 border border-red-700 animate-pulse px-2.5 py-1 rounded-lg text-[10px] font-extrabold">¡AYUDA! 🚨</span>';
+          borderStyle = 'border-red-800/80 bg-red-950/40 shadow-lg shadow-red-950/50';
         }
 
-        function downloadQR(ext) {
-            if (qrCodeObj) {
-                qrCodeObj.download({ name: "QR_SISMO_APP", extension: ext });
-            }
+        const card = document.createElement('div');
+        card.className = `p-3.5 rounded-2xl border ${borderStyle} flex flex-col justify-between gap-2.5 transition-all`;
+
+        let gpsLink = '';
+        if (member.gps && member.gps.lat) {
+          gpsLink = `<a href="https://maps.google.com/?q=${member.gps.lat},${member.gps.lng}" target="_blank" rel="noopener" class="text-[10px] text-sky-400 hover:underline flex items-center gap-1 font-mono">
+              <i class="fa-solid fa-map-pin"></i> GPS: ${member.gps.lat}, ${member.gps.lng}
+          </a>`;
         }
-    </script>
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-2">
+            <div class="truncate">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full ${status === 'safe' ? 'bg-emerald-500' : (status === 'evac' ? 'bg-amber-500' : 'bg-red-500 animate-ping')}"></span>
+                <h4 class="font-extrabold text-xs ${isMe ? 'text-amber-400' : 'text-white'} truncate">${displayName}</h4>
+              </div>
+              <p class="text-[10px] text-slate-400 mt-0.5">🕒 ${timeText} | 🔋 ${member.battery || '--%'}</p>
+            </div>
+            ${statusBadge}
+          </div>
+          ${member.note ? `<p class="text-[11px] text-slate-300 italic bg-slate-900/90 p-2 rounded-xl border border-slate-800/60 leading-tight">${member.note}</p>` : ''}
+          ${gpsLink}
+        `;
+
+        membersContainer.appendChild(card);
+      });
+
+      statTotalMembers.textContent = keys.length;
+      statSafeCount.textContent = countSafe;
+      statEvacCount.textContent = countEvac;
+      statHelpCount.textContent = countHelp;
+    }
+
+    // Limpieza de suscripción al cerrar página
+    window.addEventListener('beforeunload', () => {
+      if (unsubscribeGroupListener) {
+        unsubscribeGroupListener();
+      }
+    });
+
+    initFirebase();
+  </script>
+
+  <script>
+    // ============================================
+    // UTILIDADES, UI, SMS, QR, SOS, SIMULACRO
+    // ============================================
+
+    // Generar reporte de texto (para SMS / WhatsApp / Telegram)
+    function generateReportText() {
+      const name = document.getElementById('input-user-name').value.trim() || 'Familiar';
+      const note = document.getElementById('input-user-note').value.trim();
+      const group = document.getElementById('input-group-code').value.trim().toUpperCase() || 'FAMILIA-PEREZ';
+      const battery = document.getElementById('battery-level-text').textContent;
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      let statusStr = "¡ESTOY A SALVO! ✅";
+      const lastStatus = localStorage.getItem('sismo_last_status') || 'safe';
+      if (lastStatus === 'evac') statusStr = "EN EVACUACIÓN 🚶‍♂️";
+      if (lastStatus === 'help') statusStr = "¡NECESITO AYUDA URGENTE! 🚨";
+
+      let noteText = note ? `\n📝 Nota: ${note}` : '';
+
+      // Intentar incluir GPS si está marcado
+      let gpsText = '';
+      const chkAttachGps = document.getElementById('chk-attach-gps');
+      if (chkAttachGps && chkAttachGps.checked && navigator.geolocation) {
+        gpsText = '\n📍 Ubicación: (se adjuntará si el navegador lo permite)';
+      }
+
+      return `🚨 REPORTE DE SISMO - RED FAMILIAR
+👤 Nombre: ${name}
+🛡️ Estado: ${statusStr}${noteText}${gpsText}
+🔋 Batería: ${battery} | 🕒 Hora: ${time}
+👥 Grupo Familiar: ${group}
+🔗 App Web: ${window.location.origin}${window.location.pathname}`;
+    }
+
+    function shareWhatsApp() {
+      const text = generateReportText();
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+      showToast("Abriendo WhatsApp...", "success");
+    }
+
+    function shareTelegram() {
+      const text = generateReportText();
+      const url = `${window.location.origin}${window.location.pathname}`;
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+      showToast("Abriendo Telegram...", "success");
+    }
+
+    function shareSMS() {
+      const text = generateReportText();
+      window.open(`sms:?body=${encodeURIComponent(text)}`, '_self');
+      showToast("Abriendo app de SMS...", "success");
+    }
+
+    function copyReportText() {
+      const text = generateReportText();
+      copyToClipboard(text);
+      showToast("Reporte copiado al portapapeles.", "success");
+    }
+
+    function copyGroupCode() {
+      const code = normalizeGroupCode(document.getElementById('input-group-code').value.trim());
+      copyToClipboard(code);
+      showToast(`Código ${code} copiado.`, "info");
+    }
+
+    function copyToClipboard(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const t = document.createElement('textarea');
+        t.value = text;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+      }
+    }
+
+    function normalizeGroupCode(raw) {
+      const code = (raw || '').toUpperCase().replace(/[^A-Z0-9\-_]/g, '');
+      return code || 'FAMILIA-PEREZ';
+    }
+
+    function showToast(msg, type = 'info') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMsg.textContent = msg;
+      if (type === 'error') {
+        toastIcon.className = 'fa-solid fa-triangle-exclamation text-red-400 text-base';
+      } else if (type === 'success') {
+        toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-base';
+      } else {
+        toastIcon.className = 'fa-solid fa-circle-info text-blue-400 text-base';
+      }
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    function switchSection(target) {
+      const sections = ['protection', 'tools', 'drill', 'qr', 'brochure'];
+      sections.forEach(s => {
+        const secEl = document.getElementById(`section-${s}`);
+        const navEl = document.getElementById(`nav-${s}`);
+        if (s === target) {
+          secEl.classList.remove('hidden');
+          if (navEl) navEl.className = 'px-3 py-1.5 rounded-lg bg-chileRed text-white transition flex items-center gap-1.5 shrink-0 shadow';
+        } else {
+          secEl.classList.add('hidden');
+          if (navEl) navEl.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 shrink-0';
+        }
+      });
+    }
+
+    function switchBrochureSide(side) {
+      const exterior = document.getElementById('side-exterior');
+      const interior = document.getElementById('side-interior');
+      const tabExt = document.getElementById('tab-exterior');
+      const tabInt = document.getElementById('tab-interior');
+
+      if (side === 'exterior') {
+        exterior.classList.remove('hidden');
+        interior.classList.add('hidden');
+        tabExt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition bg-chileBlue text-white shadow';
+        tabInt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition text-slate-400 hover:text-white';
+      } else {
+        exterior.classList.add('hidden');
+        interior.classList.remove('hidden');
+        tabInt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition bg-chileBlue text-white shadow';
+        tabExt.className = 'flex-1 py-2 px-4 rounded-xl font-semibold text-xs sm:text-sm transition text-slate-400 hover:text-white';
+      }
+    }
+
+    // Sirena, silbato, estrobo
+    let audioCtx = null;
+    let sirenOsc = null;
+    let whistleOsc = null;
+    let isStrobeOn = false;
+
+    function toggleSiren() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (sirenOsc) {
+        sirenOsc.stop();
+        sirenOsc = null;
+        document.getElementById('lbl-siren').textContent = 'Activar Sirena';
+        showToast("Sirena detenida");
+      } else {
+        if (whistleOsc) toggleWhistle();
+        sirenOsc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        sirenOsc.type = 'sawtooth';
+        const now = audioCtx.currentTime;
+        sirenOsc.frequency.setValueAtTime(600, now);
+        sirenOsc.frequency.linearRampToValueAtTime(1200, now + 0.5);
+        sirenOsc.connect(gain);
+        gain.connect(audioCtx.destination);
+        sirenOsc.start();
+        setInterval(() => {
+          if (sirenOsc && audioCtx) {
+            const t = audioCtx.currentTime;
+            sirenOsc.frequency.setValueAtTime(600, t);
+            sirenOsc.frequency.linearRampToValueAtTime(1200, t + 0.5);
+          }
+        }, 1000);
+        document.getElementById('lbl-siren').textContent = 'Detener Sirena';
+        showToast("Sirena SOS activada", "error");
+      }
+    }
+
+    function toggleWhistle() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (whistleOsc) {
+        whistleOsc.stop();
+        whistleOsc = null;
+        document.getElementById('lbl-whistle').textContent = 'Silbato SOS';
+      } else {
+        if (sirenOsc) toggleSiren();
+        whistleOsc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        whistleOsc.type = 'sine';
+        whistleOsc.frequency.setValueAtTime(2800, audioCtx.currentTime);
+        whistleOsc.connect(gain);
+        gain.connect(audioCtx.destination);
+        whistleOsc.start();
+        document.getElementById('lbl-whistle').textContent = 'Detener Silbato';
+        showToast("Silbato activado");
+      }
+    }
+
+    function toggleStrobe() {
+      const container = document.getElementById('strobe-container');
+      const btn = document.getElementById('btn-strobe');
+      isStrobeOn = !isStrobeOn;
+      if (isStrobeOn) {
+        container.classList.add('strobe-active');
+        btn.textContent = 'Detener Luz Estroboscópica';
+        showToast("Luz estroboscópica activada", "error");
+      } else {
+        container.classList.remove('strobe-active');
+        btn.innerHTML = '<i class="fa-solid fa-bolt mr-2"></i> Activar Luz Estroboscópica';
+      }
+    }
+
+    function speakEmergencySteps() {
+      if ('speechSynthesis' in window) {
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+          document.getElementById('lbl-tts').textContent = 'Escuchar Guía de Voz';
+          return;
+        }
+        const speechText = "Instrucciones de emergencia sísmica. Primero: Mantén la calma. Segundo: Agáchate, cúbrete debajo de una mesa firme y sujétate. Tercero: Aléjate de ventanas y muebles altos. Cuarto: No usen ascensores. Si estás en zona costera, evacúa hacia zona alta o realiza evacuación vertical piso diez o superior.";
+        const utterance = new SpeechSynthesisUtterance(speechText);
+        utterance.lang = 'es-CL';
+        utterance.rate = 0.95;
+        utterance.onstart = () => { document.getElementById('lbl-tts').textContent = 'Detener Voz'; };
+        utterance.onend = () => { document.getElementById('lbl-tts').textContent = 'Escuchar Guía de Voz'; };
+        window.speechSynthesis.speak(utterance);
+        showToast("Reproduciendo guía de voz");
+      } else {
+        showToast("Navegador sin soporte de voz", "error");
+      }
+    }
+
+    // Simulacro
+    let drillTimer = null;
+    let drillSeconds = 60;
+
+    function startDrill() {
+      if (drillTimer) return;
+      drillSeconds = 60;
+      const timerEl = document.getElementById('drill-timer');
+      const instEl = document.getElementById('drill-instruction');
+      const btn = document.getElementById('btn-start-drill');
+      btn.disabled = true;
+      btn.classList.add('opacity-50');
+
+      if ('speechSynthesis' in window) {
+        const startSpeech = new SpeechSynthesisUtterance("Inicio de simulacro de sismo. ¡Agáchate, cúbrete y sujétate!");
+        startSpeech.lang = 'es-CL';
+        window.speechSynthesis.speak(startSpeech);
+      }
+
+      drillTimer = setInterval(() => {
+        drillSeconds--;
+        const secs = drillSeconds < 10 ? `0${drillSeconds}` : drillSeconds;
+        timerEl.textContent = `00:${secs}`;
+
+        if (drillSeconds === 45) {
+          instEl.textContent = "¡SISMO EN PROCESO! Permanece protegido bajo elemento firme.";
+        } else if (drillSeconds === 30) {
+          instEl.textContent = "El movimiento disminuye. Evalúa la seguridad de tu entorno.";
+        } else if (drillSeconds === 15) {
+          instEl.textContent = "Corta los suministros de gas y luz si es necesario.";
+        } else if (drillSeconds <= 0) {
+          clearInterval(drillTimer);
+          drillTimer = null;
+          timerEl.textContent = "00:00";
+          instEl.textContent = "¡Simulacro completado! Reúnete en la zona de seguridad.";
+          btn.disabled = false;
+          btn.classList.remove('opacity-50');
+        }
+      }, 1000);
+    }
+
+    function resetDrill() {
+      if (drillTimer) {
+        clearInterval(drillTimer);
+        drillTimer = null;
+      }
+      document.getElementById('drill-timer').textContent = "00:60";
+      document.getElementById('drill-instruction').textContent = 'Presiona "Iniciar Simulacro" para comenzar';
+      const btn = document.getElementById('btn-start-drill');
+      btn.disabled = false;
+      btn.classList.remove('opacity-50');
+    }
+
+    // Sincronización de inputs (hogar & tríptico)
+    function syncInputs(field) {
+      const appInput = document.getElementById(`app-input-${field}`);
+      const brochureInput = document.getElementById(`input-${field}`);
+      if (appInput && brochureInput) {
+        brochureInput.value = appInput.value;
+      }
+      const fields = ['address', 'commune', 'meeting', 'safezone', 'contact', 'phone'];
+      const data = {};
+      fields.forEach(f => {
+        const el = document.getElementById(`app-input-${f}`);
+        if (el) data[f] = el.value;
+      });
+      localStorage.setItem('sismo_app_data', JSON.stringify(data));
+    }
+
+    function loadSavedData() {
+      const saved = localStorage.getItem('sismo_app_data');
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          Object.keys(data).forEach(key => {
+            const appEl = document.getElementById(`app-input-${key}`);
+            const brochureEl = document.getElementById(`input-${key}`);
+            if (appEl) appEl.value = data[key];
+            if (brochureEl) brochureEl.value = data[key];
+          });
+        } catch(e) {}
+      }
+    }
+
+    function syncKitCheckboxes() {
+      const appCbs = document.querySelectorAll('.app-kit-cb');
+      let checkedCount = 0;
+      appCbs.forEach((cb) => {
+        if (cb.checked) checkedCount++;
+      });
+      const total = appCbs.length;
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('app-kit-counter').textContent = `${checkedCount} / ${total} Listos`;
+      document.getElementById('app-kit-bar').style.width = `${pct}%`;
+    }
+
+    // QR
+    let qrCodeObj = null;
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSavedData();
+      const urlInput = document.getElementById('qr-url-input');
+      const dotsColor = document.getElementById('qr-dots-color');
+      const bgColor = document.getElementById('qr-bg-color');
+
+      qrCodeObj = new QRCodeStyling({
+        width: 220,
+        height: 220,
+        type: "canvas",
+        data: urlInput.value.trim() || window.location.href,
+        dotsOptions: { color: dotsColor.value, type: "rounded" },
+        backgroundOptions: { color: bgColor.value }
+      });
+
+      qrCodeObj.append(document.getElementById('qr-code-target'));
+    });
+
+    function updateQR() {
+      if (!qrCodeObj) return;
+      const urlInput = document.getElementById('qr-url-input');
+      const dotsColor = document.getElementById('qr-dots-color');
+      const bgColor = document.getElementById('qr-bg-color');
+      qrCodeObj.update({
+        data: urlInput.value.trim() || window.location.href,
+        dotsOptions: { color: dotsColor.value },
+        backgroundOptions: { color: bgColor.value }
+      });
+    }
+
+    function downloadQR(ext) {
+      if (qrCodeObj) {
+        qrCodeObj.download({ name: "QR_SISMO_APP", extension: ext });
+      }
+    }
+  </script>
 </body>
 </html>
