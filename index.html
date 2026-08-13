@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -32,14 +32,14 @@
         @media print {
             .no-print { display: none !important; }
             body { background: white !important; font-size: 10px !important; padding: 0 !important; margin: 0 !important; }
-            
+
             #section-brochure { display: block !important; }
             #section-app, #section-tools, #section-drill { display: none !important; }
 
-            #side-exterior, #side-interior { 
+            #side-exterior, #side-interior {
                 display: flex !important;
                 flex-direction: row !important;
-                page-break-after: always; 
+                page-break-after: always;
                 page-break-inside: avoid;
                 height: 100vh !important;
                 max-height: 100vh !important;
@@ -88,7 +88,7 @@
     <!-- ========================================================================= -->
     <header class="no-print bg-slate-950 text-white sticky top-0 z-50 border-b border-slate-800 shadow-xl">
         <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
-            
+
             <!-- MARCA & LOGO -->
             <div class="flex items-center gap-2.5">
                 <div class="bg-chileRed text-white p-2 rounded-xl font-extrabold text-base flex items-center justify-center w-9 h-9 shadow-lg shadow-red-900/40">
@@ -143,7 +143,7 @@
             <!-- BANNER DE CRISIS RÁPIDA Y ESTADO FAMILIAR -->
             <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-5 text-white shadow-xl">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    
+
                     <div class="space-y-1">
                         <div class="flex items-center gap-2">
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
@@ -165,14 +165,25 @@
                 </div>
 
                 <!-- CÓDIGO DE GRUPO FAMILIAR EN LA NUBE -->
-                <div class="mt-4 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs">
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <i class="fa-solid fa-users text-chileBlue text-sm"></i>
-                        <span class="font-bold text-slate-300">Grupo Familiar (Sync Cloud):</span>
-                        <input type="text" id="family-code-input" placeholder="Ej: FAMILIA-PEREZ" onchange="updateFamilyCode()" class="bg-slate-900 border border-slate-700 px-3 py-1 rounded-lg text-white font-mono text-xs focus:outline-none focus:border-blue-500 uppercase">
+                <div class="mt-4 pt-4 border-t border-slate-800/80 space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <i class="fa-solid fa-users text-chileBlue text-sm"></i>
+                            <span class="font-bold text-slate-300">Grupo Familiar (Sync Cloud):</span>
+                            <input type="text" id="family-code-input" placeholder="Ej: FAMILIA-PEREZ" onchange="updateFamilyCode()" class="bg-slate-900 border border-slate-700 px-3 py-1 rounded-lg text-white font-mono text-xs focus:outline-none focus:border-blue-500 uppercase">
+                        </div>
+                        <div id="family-sync-status" class="text-slate-400 text-[11px] flex items-center gap-1.5">
+                            <i class="fa-solid fa-cloud-question text-slate-500"></i> Ingresa un código para sincronizar
+                        </div>
                     </div>
-                    <div id="family-sync-status" class="text-slate-400 text-[11px] flex items-center gap-1.5">
-                        <i class="fa-solid fa-cloud-arrow-up text-blue-400"></i> Guardado Local & Cloud Activo
+
+                    <!-- LISTA DE ESTADOS DEL GRUPO FAMILIAR -->
+                    <div id="family-members-wrap" class="hidden">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Estados del grupo</span>
+                            <span id="family-members-updated" class="text-[10px] text-slate-500"></span>
+                        </div>
+                        <div id="family-members-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
                     </div>
                 </div>
             </div>
@@ -244,7 +255,7 @@
 
             <!-- REGISTRO DEL HOGAR & MOCHILA DE EMERGENCIA INTERACTIVOS -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                
+
                 <!-- REGISTRO DE DATOS DEL HOGAR -->
                 <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 text-white space-y-4">
                     <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -345,7 +356,7 @@
         <!-- SECCIÓN 2: HERRAMIENTAS SOS Y LUZ DE ESTROBO -->
         <!-- ========================================================================= -->
         <section id="section-tools" class="hidden space-y-5 max-w-4xl mx-auto">
-            
+
             <div id="strobe-container" class="bg-slate-950 border border-slate-800 rounded-2xl p-6 text-white text-center space-y-4 shadow-2xl transition-all">
                 <div class="w-16 h-16 bg-red-600/20 text-red-500 border border-red-500/30 rounded-2xl mx-auto flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-lightbulb"></i>
@@ -391,7 +402,7 @@
         <!-- SECCIÓN 3: MODO SIMULACRO DE SISMO (CRONÓMETRO GUIADO) -->
         <!-- ========================================================================= -->
         <section id="section-drill" class="hidden space-y-5 max-w-2xl mx-auto">
-            
+
             <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 text-white text-center space-y-4 shadow-2xl">
                 <div class="inline-block bg-emerald-950 text-emerald-400 border border-emerald-800/50 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                     Ensayo de Autoprotección
@@ -435,7 +446,7 @@
 
             <!-- CARA EXTERNA -->
             <div id="side-exterior" class="print-page grid grid-cols-1 md:grid-cols-3 gap-6 bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-200">
-                
+
                 <!-- COLUMNA 1: PÁGINA 0 - REGISTRO DEL HOGAR -->
                 <div class="print-col fold-line pr-0 md:pr-4 flex flex-col justify-between space-y-3 bg-slate-50/60 p-2.5 rounded-xl border border-slate-200/60">
                     <div>
@@ -535,7 +546,7 @@
                 <!-- COLUMNA 3: PORTADA PRINCIPAL -->
                 <div class="print-col flex flex-col justify-between text-center bg-gradient-to-b from-blue-950 via-chileBlue to-slate-900 text-white p-5 sm:p-6 rounded-xl relative overflow-hidden">
                     <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-                    
+
                     <div>
                         <div class="inline-block bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider text-blue-200 mb-3 border border-white/10">
                             PLAN DE PROTECCIÓN FAMILIAR
@@ -719,90 +730,7 @@
 
     </main>
 
-    <!-- FIREBASE & LOGICA JAVASCRIPT UNIFICADA -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
-        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
-        import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
-
-        // Configuración Firebase (entorno habilitado)
-        let db = null, auth = null, currentUser = null;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'sismo-app';
-
-        if (typeof __firebase_config !== 'undefined') {
-            try {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                const initAuth = async () => {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                };
-                initAuth();
-                onAuthStateChanged(auth, (user) => {
-                    currentUser = user;
-                    if (user) listenFamilySync();
-                });
-            } catch (e) {
-                console.warn("Modo LocalStorage activo (Sin Firebase):", e);
-            }
-        }
-
-        // Sincronización en la nube si hay código familiar
-        window.updateFamilyCode = function() {
-            const code = document.getElementById('family-code-input').value.trim().toUpperCase();
-            localStorage.setItem('sismo_family_code', code);
-            showToast(`Código familiar guardado: ${code || 'Ninguno'}`);
-            if (currentUser && db && code) listenFamilySync();
-        };
-
-        function listenFamilySync() {
-            const code = localStorage.getItem('sismo_family_code');
-            if (!code || !currentUser || !db) return;
-
-            const familyDoc = doc(db, 'artifacts', appId, 'public', 'data', `family_${code}`);
-            onSnapshot(familyDoc, (snap) => {
-                if (snap.exists()) {
-                    const data = snap.data();
-                    document.getElementById('family-sync-status').innerHTML = `<i class="fa-solid fa-cloud-check text-emerald-400"></i> Sincronizado: ${code}`;
-                }
-            }, (err) => console.error("Error sync:", err));
-        }
-
-        window.setUserStatus = function(status) {
-            const btnSafe = document.getElementById('btn-status-safe');
-            const btnHelp = document.getElementById('btn-status-help');
-
-            if (status === 'safe') {
-                btnSafe.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-emerald-600 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow';
-                btnHelp.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-slate-800 text-slate-400 font-bold text-xs transition flex items-center justify-center gap-2';
-                showToast("Estado actualizado: ¡ESTOY A SALVO!", "success");
-            } else {
-                btnHelp.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-red-600 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow';
-                btnSafe.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-slate-800 text-slate-400 font-bold text-xs transition flex items-center justify-center gap-2';
-                showToast("Estado actualizado: NECESITO AYUDA", "error");
-            }
-
-            // Publicar en Firestore si hay auth
-            const code = localStorage.getItem('sismo_family_code');
-            if (currentUser && db && code) {
-                const userRef = doc(db, 'artifacts', appId, 'public', 'data', `family_${code}`);
-                setDoc(userRef, {
-                    [currentUser.uid]: {
-                        status: status,
-                        timestamp: new Date().toISOString()
-                    }
-                }, { merge: true });
-            }
-        };
-    </script>
-
-    <!-- SCRIPTS LÓGICOS DE PWA, AUDIO & HERRAMIENTAS -->
+    <!-- SCRIPTS LÓGICOS DE PWA, AUDIO, HERRAMIENTAS Y SYNC FAMILIAR -->
     <script>
         // ESTADO GLOBAL DE HERRAMIENTAS
         let audioCtx = null;
@@ -811,15 +739,20 @@
         let isStrobeOn = false;
         let currentGps = null;
 
+        // ESTADO GLOBAL DE SYNC FAMILIAR
+        let familyPollTimer = null;
+        const FAMILY_POLL_MS = 8000;
+
         // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', () => {
             loadSavedData();
             initGeolocation();
-            
-            // Cargar código familiar guardado
+
+            // Cargar código familiar guardado y reanudar sincronización si corresponde
             const savedCode = localStorage.getItem('sismo_family_code');
             if (savedCode) {
                 document.getElementById('family-code-input').value = savedCode;
+                startFamilySync(savedCode);
             }
         });
 
@@ -896,7 +829,7 @@
                 sirenOsc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 sirenOsc.type = 'sawtooth';
-                
+
                 // Modulación de frecuencia de sirena (600Hz - 1200Hz)
                 const now = audioCtx.currentTime;
                 sirenOsc.frequency.setValueAtTime(600, now);
@@ -983,9 +916,9 @@
             const phone = document.getElementById('app-input-phone').value || '';
             const address = document.getElementById('app-input-address').value || 'mi domicilio';
             const coordsStr = currentGps ? `https://maps.google.com/?q=${currentGps.lat},${currentGps.lng}` : '';
-            
+
             const msg = `[ALERTA SISMO] Estoy a salvo. Ubicación: ${address}. ${coordsStr}`.trim();
-            
+
             showToast("Abriendo aplicación de SMS...", "success");
             window.location.href = `sms:${phone}?body=${encodeURIComponent(msg)}`;
         }
@@ -1130,6 +1063,182 @@
             document.getElementById('app-kit-counter').textContent = `${checkedCount} / ${total} Listos`;
             document.getElementById('app-kit-bar').style.width = `${pct}%`;
         }
+
+        // ==========================================================================
+        // GRUPO FAMILIAR (SYNC CLOUD) — reescrito con almacenamiento persistente
+        // El código original dependía de Firebase con variables de entorno
+        // (__firebase_config, __app_id, __initial_auth_token) que no existen en este
+        // entorno, por lo que "db" siempre quedaba en null y nada se sincronizaba
+        // realmente entre dispositivos. Se reemplaza por window.storage (compartido),
+        // que sí persiste entre sesiones y dispositivos dentro de este artefacto.
+        // ==========================================================================
+
+        // Identificador único y estable de este dispositivo/usuario
+        function getDeviceId() {
+            let id = localStorage.getItem('sismo_device_id');
+            if (!id) {
+                id = 'u_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+                localStorage.setItem('sismo_device_id', id);
+            }
+            return id;
+        }
+
+        function familyKey(code, uid) {
+            return `family:${code}:${uid}`;
+        }
+
+        // Se llama cuando el usuario escribe/confirma un código de grupo familiar
+        window.updateFamilyCode = function() {
+            const raw = document.getElementById('family-code-input').value.trim().toUpperCase();
+            document.getElementById('family-code-input').value = raw;
+
+            if (!raw) {
+                localStorage.removeItem('sismo_family_code');
+                stopFamilySync();
+                document.getElementById('family-sync-status').innerHTML =
+                    '<i class="fa-solid fa-cloud-question text-slate-500"></i> Ingresa un código para sincronizar';
+                document.getElementById('family-members-wrap').classList.add('hidden');
+                showToast("Sincronización familiar desactivada");
+                return;
+            }
+
+            localStorage.setItem('sismo_family_code', raw);
+            showToast(`Código familiar guardado: ${raw}`, "success");
+            startFamilySync(raw);
+        };
+
+        function startFamilySync(code) {
+            stopFamilySync();
+            document.getElementById('family-members-wrap').classList.remove('hidden');
+            setFamilyStatusLabel('connecting');
+
+            // Publica el estado guardado localmente (si existe) para que el grupo lo vea
+            const lastStatus = localStorage.getItem('sismo_last_status');
+            if (lastStatus) {
+                publishFamilyStatus(code, lastStatus, /*silent*/ true);
+            }
+
+            refreshFamilyMembers(code);
+            familyPollTimer = setInterval(() => refreshFamilyMembers(code), FAMILY_POLL_MS);
+        }
+
+        function stopFamilySync() {
+            if (familyPollTimer) {
+                clearInterval(familyPollTimer);
+                familyPollTimer = null;
+            }
+        }
+
+        function setFamilyStatusLabel(state, code) {
+            const el = document.getElementById('family-sync-status');
+            if (state === 'connecting') {
+                el.innerHTML = '<i class="fa-solid fa-cloud-arrow-up text-blue-400 animate-pulse"></i> Conectando al grupo...';
+            } else if (state === 'synced') {
+                el.innerHTML = `<i class="fa-solid fa-cloud-check text-emerald-400"></i> Sincronizado: ${code}`;
+            } else if (state === 'error') {
+                el.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-400"></i> Sin conexión a la nube, reintentando...';
+            }
+        }
+
+        async function publishFamilyStatus(code, status, silent) {
+            const uid = getDeviceId();
+            const payload = JSON.stringify({
+                status: status,
+                timestamp: new Date().toISOString(),
+                label: (document.getElementById('app-input-address').value || '').slice(0, 40) || 'Miembro'
+            });
+
+            try {
+                const result = await window.storage.set(familyKey(code, uid), payload, true);
+                if (!result) throw new Error('write failed');
+                if (!silent) showToast(`Estado publicado al grupo ${code}`, "success");
+            } catch (err) {
+                console.error("Error al publicar estado familiar:", err);
+                setFamilyStatusLabel('error');
+                if (!silent) showToast("No se pudo sincronizar con la nube. Se guardó localmente.", "error");
+            }
+        }
+
+        async function refreshFamilyMembers(code) {
+            const listEl = document.getElementById('family-members-list');
+            const updatedEl = document.getElementById('family-members-updated');
+
+            try {
+                const listing = await window.storage.list(`family:${code}:`, true);
+                const keys = (listing && listing.keys) ? listing.keys : [];
+
+                if (keys.length === 0) {
+                    listEl.innerHTML = '<div class="text-[11px] text-slate-500 col-span-2">Aún no hay miembros en este grupo. Comparte el código para que se unan.</div>';
+                    setFamilyStatusLabel('synced', code);
+                    updatedEl.textContent = `Actualizado ${new Date().toLocaleTimeString('es-CL')}`;
+                    return;
+                }
+
+                const members = [];
+                for (const key of keys) {
+                    try {
+                        const res = await window.storage.get(key, true);
+                        if (res && res.value) {
+                            const data = JSON.parse(res.value);
+                            members.push({ uid: key, ...data });
+                        }
+                    } catch (e) {
+                        // Clave individual no disponible, se omite sin interrumpir el resto
+                    }
+                }
+
+                members.sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
+
+                listEl.innerHTML = members.map(m => {
+                    const isSafe = m.status === 'safe';
+                    const isMe = m.uid === familyKey(code, getDeviceId());
+                    const badgeClass = isSafe ? 'bg-emerald-950 text-emerald-300 border-emerald-800/50' : 'bg-red-950 text-red-300 border-red-800/50';
+                    const icon = isSafe ? 'fa-shield-heart' : 'fa-hand-holding-medical';
+                    const time = m.timestamp ? new Date(m.timestamp).toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' }) : '';
+                    return `<div class="flex items-center justify-between gap-2 p-2 rounded-lg border ${badgeClass} text-[11px]">
+                        <span class="flex items-center gap-1.5 font-semibold"><i class="fa-solid ${icon}"></i> ${escapeHtml(m.label || 'Miembro')}${isMe ? ' (tú)' : ''}</span>
+                        <span class="opacity-80">${time}</span>
+                    </div>`;
+                }).join('');
+
+                setFamilyStatusLabel('synced', code);
+                updatedEl.textContent = `Actualizado ${new Date().toLocaleTimeString('es-CL')}`;
+            } catch (err) {
+                console.error("Error al leer estados familiares:", err);
+                setFamilyStatusLabel('error');
+            }
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ACTUALIZA MI ESTADO (A SALVO / NECESITO AYUDA)
+        window.setUserStatus = function(status) {
+            const btnSafe = document.getElementById('btn-status-safe');
+            const btnHelp = document.getElementById('btn-status-help');
+
+            if (status === 'safe') {
+                btnSafe.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-emerald-600 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow';
+                btnHelp.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-slate-800 text-slate-400 font-bold text-xs transition flex items-center justify-center gap-2';
+                showToast("Estado actualizado: ¡ESTOY A SALVO!", "success");
+            } else {
+                btnHelp.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-red-600 text-white font-bold text-xs transition flex items-center justify-center gap-2 shadow';
+                btnSafe.className = 'flex-1 sm:flex-none px-4 py-2 rounded-lg bg-slate-800 text-slate-400 font-bold text-xs transition flex items-center justify-center gap-2';
+                showToast("Estado actualizado: NECESITO AYUDA", "error");
+            }
+
+            localStorage.setItem('sismo_last_status', status);
+
+            const code = localStorage.getItem('sismo_family_code');
+            if (code) {
+                publishFamilyStatus(code, status, false).then(() => refreshFamilyMembers(code));
+            } else {
+                showToast("Consejo: ingresa un código de grupo familiar para avisar a los demás", "info");
+            }
+        };
     </script>
 </body>
 </html>
